@@ -7,772 +7,27 @@
     <meta name="description"
         content="Just Go Market: A extensão da sua casa. Mercado autônomo premium em Brasília. Tecnologia invisível e Custo Zero para condomínios.">
     <title>Just Go Market | A Extensão da Sua Casa</title>
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Wix+Madefor+Display:wght@400;500;700&display=swap"
         rel="stylesheet">
-
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
     <!-- GSAP & Lenis -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-
-    <style>
-        /* --- VARIABLES --- */
-        :root {
-            --color-black: #010502;
-            --color-green: #a0e261;
-            --color-offwhite: #fffdfc;
-            --color-gray-light: #f4f2f0;
-
-            --font-title: 'Alexandria', sans-serif;
-            --font-body: 'Wix Madefor Display', sans-serif;
-
-            --container-width: 1240px;
-            --border-radius: 24px;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* --- RESET & BASE --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html.lenis {
-            height: auto;
-        }
-
-        .lenis.lenis-smooth {
-            scroll-behavior: auto;
-        }
-
-        .lenis.lenis-smooth [data-lenis-prevent] {
-            overscroll-behavior: contain;
-        }
-
-        .lenis.lenis-stopped {
-            overflow: hidden;
-        }
-
-        body {
-            background-color: var(--color-offwhite);
-            color: var(--color-black);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            font-family: var(--font-title);
-            font-weight: 700;
-            line-height: 1.1;
-        }
-
-        p {
-            margin-bottom: 20px;
-            color: rgba(0, 0, 0, 0.7);
-            font-size: 1.05rem;
-        }
-
-        .dark-section p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* --- UTILITIES --- */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .dark-section {
-            background-color: var(--color-black);
-            color: var(--color-offwhite);
-        }
-
-        .light-section {
-            background-color: var(--color-offwhite);
-            color: var(--color-black);
-        }
-
-        .highlight {
-            color: var(--color-green);
-        }
-
-        .uppercase {
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 32px;
-            border-radius: 100px;
-            font-family: var(--font-title);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background-color: var(--color-green);
-            color: var(--color-black);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(160, 226, 97, 0.3);
-        }
-
-        .btn-outline {
-            border-color: rgba(255, 255, 255, 0.3);
-            color: var(--color-offwhite);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--color-green);
-            color: var(--color-green);
-            background: rgba(160, 226, 97, 0.05);
-        }
-
-        .btn-block {
-            width: 100%;
-        }
-
-        /* --- HEADER --- */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 20px 0;
-            transition: var(--transition);
-            background: rgba(255, 253, 252, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-        }
-
-        .header.scrolled {
-            padding: 15px 0;
-            background: rgba(255, 253, 252, 0.98);
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-title);
-            font-weight: 700;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--color-black);
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--color-green);
-            border-radius: 10px 10px 4px 4px;
-            position: relative;
-        }
-
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 8px;
-            border-bottom: 2.5px solid var(--color-offwhite);
-            border-radius: 50%;
-            top: 14px;
-            left: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: var(--color-green);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 2px;
-            background: var(--color-black);
-        }
-
-        /* --- HERO (TYPOGRAPHIC REDESIGN) --- */
-        .hero {
-            padding: 180px 0 120px;
-            background-color: var(--color-black);
-            color: var(--color-offwhite);
-            position: relative;
-            overflow: hidden;
-            min-height: 95vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at 60% 40%, rgba(160, 226, 97, 0.08) 0%, rgba(1, 5, 2, 0) 60%), var(--color-black);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-        }
-
-        .hero-tagline {
-            color: var(--color-green);
-            font-family: var(--font-title);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        .hero h1 {
-            font-size: 5.5rem;
-            margin-bottom: 30px;
-            letter-spacing: -3px;
-            line-height: 1;
-            font-weight: 800;
-        }
-
-        .highlight-italic {
-            color: var(--color-green);
-            font-style: italic;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 50px;
-            max-width: 600px;
-            font-weight: 400;
-            line-height: 1.5;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            border: 1px solid var(--color-green);
-        }
-
-        /* Ensure contrast on black */
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3.2rem;
-                letter-spacing: -1px;
-            }
-
-            .hero {
-                padding-top: 140px;
-                min-height: 85vh;
-            }
-        }
-
-        /* --- MARQUEE --- */
-        .marquee-section {
-            background: var(--color-black);
-            padding: 40px 0;
-            border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
-            overflow: hidden;
-        }
-
-        .marquee-title {
-            text-align: center;
-            color: #666;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-
-        .marquee-track {
-            display: flex;
-            gap: 80px;
-            animation: scroll 30s linear infinite;
-            white-space: nowrap;
-            align-items: center;
-        }
-
-        .brand-item {
-            font-family: var(--font-title);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #444;
-            text-transform: uppercase;
-            opacity: 0.6;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
-        /* --- MODELO (BENTO GRID) --- */
-        .section-model {
-            padding: 120px 0;
-            background: var(--color-offwhite);
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .bento-card {
-            background: white;
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .bento-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--color-green);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-        }
-
-        .bento-icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--color-green);
-        }
-
-        .bento-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        /* --- SPLIT SECTIONS (SYNDIC & RESIDENT) --- */
-        .section-split {
-            padding: 120px 0;
-            overflow: hidden;
-        }
-
-        .split-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .split-content h2 {
-            font-size: 3rem;
-            margin-bottom: 30px;
-            line-height: 1.1;
-        }
-
-        .split-list {
-            margin-top: 30px;
-        }
-
-        .split-list li {
-            margin-bottom: 20px;
-            padding-left: 30px;
-            position: relative;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .split-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--color-green);
-            font-weight: bold;
-        }
-
-        .split-image-wrapper {
-            position: relative;
-            height: 600px;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .split-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .split-image-wrapper:hover .split-image {
-            transform: scale(1.05);
-        }
-
-        /* --- FAQ --- */
-        .section-faq {
-            padding: 120px 0;
-            background: var(--color-offwhite);
-        }
-
-        .faq-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .accordion-item:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-        }
-
-        .accordion-header {
-            padding: 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: var(--font-title);
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        .accordion-icon {
-            width: 24px;
-            height: 24px;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .accordion-icon::before,
-        .accordion-icon::after {
-            content: '';
-            position: absolute;
-            background: var(--color-black);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .accordion-icon::before {
-            width: 2px;
-            height: 14px;
-        }
-
-        .accordion-icon::after {
-            width: 14px;
-            height: 2px;
-        }
-
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        .accordion-item.active .accordion-icon::before,
-        .accordion-item.active .accordion-icon::after {
-            background: var(--color-green);
-        }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-            padding: 0 30px;
-            color: #555;
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .accordion-item.active .accordion-body {
-            max-height: 300px;
-            padding-bottom: 30px;
-        }
-
-        /* --- CONTACT --- */
-        .section-contact {
-            padding: 120px 0;
-            background: var(--color-black);
-            color: var(--color-offwhite);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .form-container {
-            background: #111;
-            padding: 50px;
-            border-radius: 30px;
-            border: 1px solid #222;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 16px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            transition: var(--transition);
-            font-family: inherit;
-        }
-
-        .form-control:focus {
-            border-color: var(--color-green);
-            outline: none;
-            background: #222;
-        }
-
-        .profile-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .radio-label {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: block;
-        }
-
-        input[type="radio"]:checked+.radio-label {
-            background: var(--color-green);
-            color: var(--color-black);
-            border-color: var(--color-green);
-        }
-
-        /* --- FOOTER --- */
-        .footer {
-            background: var(--color-offwhite);
-            padding: 80px 0 40px;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-flex {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 20px;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 12px;
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .copyright {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.85rem;
-        }
-
-        /* --- WHATSAPP --- */
-        .wa-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 64px;
-            height: 64px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: var(--transition);
-            animation: pulse 2s infinite;
-        }
-
-        .wa-float:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .bento-grid,
-            .split-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .split-grid {
-                gap: 40px;
-            }
-
-            .split-image-wrapper {
-                height: 400px;
-            }
-
-            .nav-links,
-            .btn-outline {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .hero {
-                padding-top: 150px;
-            }
-
-            /* Reorder for Mobile: Image First in Resident Section */
-            .section-resident .split-image-wrapper {
-                order: -1;
-            }
-        }
-    </style>
 </head>
 
 <body>
-
     <!-- Header -->
     <header id="header" class="header">
         <div class="container">
             <nav class="nav">
                 <a href="#" class="logo">
-                    <div class="logo-icon"></div> Just Go Market
+                    <img src="assets/images/logoname.png" alt="Just Go Market Logo">
                 </a>
                 <div class="nav-links">
                     <a href="#modelo" class="nav-link">O Modelo</a>
@@ -791,15 +46,16 @@
     </header>
 
     <main>
-        <!-- Hero Section (Typographic Redesign) -->
+        <!-- Hero Section -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
                     <span class="hero-tagline hero-stagger">O #ESSENCIAL, A UM PASSO!</span>
-                    <h1 class="hero-stagger">Praticidade que <span class="highlight-italic">transforma</span> a rotina.
+                    <h1 class="hero-stagger">O essencial e o especial, a um passo da sua <span
+                            class="highlight-italic">porta</span>.
                     </h1>
-                    <p class="hero-stagger">Mercado autônomo premium em condomínios. Tecnologia invisível, sem custo de
-                        implantação.</p>
+                    <p class="hero-stagger">Leve a conveniência completa para seu condomínio. Do item de emergência ao
+                        jantar especial, 24h por dia.</p>
                     <div class="hero-btns hero-stagger">
                         <a href="#contato" class="btn btn-primary">Solicitar Projeto</a>
                         <a href="#modelo" class="btn btn-outline">Entenda como funciona</a>
@@ -811,25 +67,38 @@
         <!-- Authority Marquee -->
         <div class="marquee-section">
             <div class="container">
-                <p class="marquee-title">Curadoria Premium: As melhores marcas a um elevador de distância</p>
+                <p class="marquee-title">Das grandes marcas ao item de emergência: tudo a um elevador de distância.</p>
             </div>
             <div class="marquee-track">
                 <span class="brand-item">HEINEKEN</span>
+                <span class="brand-item">COCA-COLA</span>
                 <span class="brand-item">LINDT</span>
-                <span class="brand-item">STARBUCKS</span>
-                <span class="brand-item">NESPRESSO</span>
-                <span class="brand-item">BEN & JERRY'S</span>
-                <span class="brand-item">SEARA GOURMET</span>
+                <span class="brand-item">OMO</span>
+                <span class="brand-item">PRINGLES</span>
+                <span class="brand-item">NESTLÉ</span>
+                <span class="brand-item">RED BULL</span>
+                <span class="brand-item">COLGATE</span>
+                <span class="brand-item">BAUDUCCO</span>
+                <span class="brand-item">YPÊ</span>
+                <span class="brand-item">FINI</span>
+                <span class="brand-item">NISSIN</span>
+                <!-- Duplicate for seamless loop -->
                 <span class="brand-item">HEINEKEN</span>
+                <span class="brand-item">COCA-COLA</span>
                 <span class="brand-item">LINDT</span>
-                <span class="brand-item">STARBUCKS</span>
-                <span class="brand-item">NESPRESSO</span>
-                <span class="brand-item">BEN & JERRY'S</span>
-                <span class="brand-item">SEARA GOURMET</span>
+                <span class="brand-item">OMO</span>
+                <span class="brand-item">PRINGLES</span>
+                <span class="brand-item">NESTLÉ</span>
+                <span class="brand-item">RED BULL</span>
+                <span class="brand-item">COLGATE</span>
+                <span class="brand-item">BAUDUCCO</span>
+                <span class="brand-item">YPÊ</span>
+                <span class="brand-item">FINI</span>
+                <span class="brand-item">NISSIN</span>
             </div>
         </div>
 
-        <!-- Modelo de Negócio (Light) -->
+        <!-- Modelo de Negócio -->
         <section id="modelo" class="section-model">
             <div class="container">
                 <div class="text-center" style="margin-bottom: 60px;">
@@ -839,13 +108,16 @@
                 <div class="bento-grid">
                     <div class="bento-card reveal-card">
                         <div class="bento-icon">✦</div>
-                        <h3>Investimento Nosso</h3>
-                        <p>Obra, projeto arquitetônico, marcenaria e equipamentos. Tudo por conta da Just Go Market.</p>
+                        <h3>Estrutura sem Custo</h3>
+                        <p>Nós investimos em marcenaria de alto padrão, geladeiras expositoras modernas e tecnologia de
+                            automação. O condomínio recebe uma loja completa e segura, sem desembolso de capital (CAPEX
+                            Zero).</p>
                     </div>
                     <div class="bento-card reveal-card">
                         <div class="bento-icon">⚙</div>
-                        <h3>Operação Autônoma</h3>
-                        <p>Reposição inteligente, limpeza diária e manutenção preventiva realizadas pela nossa equipe.
+                        <h3>Segurança e Operação</h3>
+                        <p>Nossa tecnologia analisa o perfil do seu condomínio. Se o público pede mais itens básicos,
+                            nós ajustamos. Se pede mais vinhos premium, nós entregamos. O mix é vivo e personalizado.
                         </p>
                     </div>
                     <div class="bento-card reveal-card">
@@ -857,7 +129,7 @@
             </div>
         </section>
 
-        <!-- Para o Síndico (Dark) -->
+        <!-- Para o Síndico -->
         <section id="sindico" class="section-split dark-section">
             <div class="container">
                 <div class="split-grid">
@@ -870,37 +142,35 @@
                             <li><strong>Monitoramento Inteligente:</strong> Câmeras e sensores garantem segurança total
                                 24h.</li>
                             <li><strong>Sem Dor de Cabeça:</strong> Gestão operacional 100% terceirizada. Zero trabalho
-                                para o síndico.</li>
+                            </li>
                         </ul>
                         <a href="#contato" class="btn btn-primary" style="margin-top: 30px;">Quero Valorizar meu
                             Condomínio</a>
                     </div>
                     <div class="split-image-wrapper reveal-card">
-                        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop"
-                            alt="Lobby Moderno" class="split-image">
+                        <img src="assets/images/projeto-1.jpg" alt="Lobby Moderno" class="split-image">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Para o Morador (Light) -->
+        <!-- Para o Morador -->
         <section id="morador" class="section-split light-section section-resident">
             <div class="container">
                 <div class="split-grid">
                     <div class="split-image-wrapper reveal-card">
-                        <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2000&auto=format&fit=crop"
-                            alt="Lifestyle Morador" class="split-image">
+                        <img src="assets/images/projeto-2.jpg" alt="Lifestyle Morador" class="split-image">
                     </div>
                     <div class="split-content reveal-text">
                         <span class="uppercase highlight">Para o Morador</span>
-                        <h2>Conforto de Casa, Conveniência de Mercado.</h2>
+                        <h2>Seu salva-vidas, 24 horas por dia.</h2>
                         <ul class="split-list">
-                            <li><strong>Adega e Empório Gourmet:</strong> Vinhos selecionados, queijos e itens para
-                                receber amigos.</li>
-                            <li><strong>Café da Manhã Fresco:</strong> Padaria e itens essenciais para começar o dia
-                                bem.</li>
-                            <li><strong>Aberto 24h:</strong> Liberdade total. A loja nunca fecha, atendendo sua rotina.
-                            </li>
+                            <li><strong>Despensa de Emergência:</strong> Acabou o açúcar, o óleo ou o detergente?
+                                Resolva na hora, sem pegar o carro.</li>
+                            <li><strong>Adega & Momento Gourmet:</strong> Vinhos selecionados, cervejas geladas,
+                                chocolates e snacks para relaxar.</li>
+                            <li><strong>Sem Filas, Sem Tédio:</strong> Sistema Scan & Go ágil. Pegue o que precisa e
+                                volte para casa em minutos.</li>
                         </ul>
                         <a href="#contato" class="btn btn-primary" style="margin-top: 30px;">Quero no meu Prédio</a>
                     </div>
@@ -938,12 +208,14 @@
                     </div>
                     <div class="accordion-item reveal-text">
                         <div class="accordion-header" onclick="toggleAccordion(this)">
-                            Qual o espaço mínimo necessário?
+                            Quais produtos vocês vendem?
                             <div class="accordion-icon"></div>
                         </div>
                         <div class="accordion-body">
-                            <p>Conseguimos implantar lojas completas a partir de 5m². Adaptamos o projeto ao seu espaço
-                                disponível.</p>
+                            <p>Trabalhamos com um mix inteligente que une o básico do dia a dia (mercearia, limpeza,
+                                higiene) ao gourmet (bebidas, importados, snacks). Sem perecíveis de alto risco (como
+                                padaria artesanal) no início, focando no que você realmente precisa com validade e
+                                segurança.</p>
                         </div>
                     </div>
                     <div class="accordion-item reveal-text">
@@ -952,7 +224,8 @@
                             <div class="accordion-icon"></div>
                         </div>
                         <div class="accordion-body">
-                            <p>Atendemos Asa Sul, Asa Norte, Noroeste, Sudoeste, Águas Claras e Lago Sul/Norte.</p>
+                            <p>Atuamos em todo o Distrito Federal e Entorno. Nossa logística é preparada para chegar a
+                                condomínios de todas as regiões com a mesma eficiência.</p>
                         </div>
                     </div>
                 </div>
@@ -964,33 +237,29 @@
             <div class="container">
                 <div class="contact-grid">
                     <div class="contact-info reveal-text">
-                        <h2 style="font-size: 3rem; line-height: 1.1; margin-bottom: 20px;">Vamos agendar uma visita
-                            técnica?</h2>
-                        <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px;">
-                            Descubra como transformar seu condomínio com tecnologia e conveniência premium.
-                        </p>
-                        <div>
-                            <h4 class="highlight" style="margin-bottom: 15px;">Contato Direto</h4>
-                            <p style="opacity: 0.9; font-size: 1.1rem;">
+                        <span class="uppercase highlight">Fale Conosco</span>
+                        <h2>Leve o Empório Just Go para o seu condomínio.</h2>
+                        <p>Preencha o formulário ou entre em contato direto. Nossa equipe retornará em breve.</p>
+
+                        <div class="contact-box">
+                            <h4>Contato Direto</h4>
+                            <p>
                                 (61) 99999-9999<br>
                                 contato@justgomarket.com.br
                             </p>
                         </div>
                     </div>
 
-                    <div class="form-container reveal-card">
-                        <form>
-                            <div class="form-group">
-                                <label>Você é:</label>
-                                <div class="profile-options">
-                                    <input type="radio" name="perfil" id="p-sindico" value="sindico" hidden checked
-                                        onchange="toggleFields()">
-                                    <label for="p-sindico" class="radio-label">Sou Síndico</label>
+                    <div class="form-wrapper reveal-card">
+                        <form class="form-container">
+                            <div class="profile-options">
+                                <input type="radio" name="perfil" id="p-sindico" value="sindico" hidden checked
+                                    onchange="toggleFields()">
+                                <label for="p-sindico" class="radio-label">Sou Síndico</label>
 
-                                    <input type="radio" name="perfil" id="p-morador" value="morador" hidden
-                                        onchange="toggleFields()">
-                                    <label for="p-morador" class="radio-label">Sou Morador</label>
-                                </div>
+                                <input type="radio" name="perfil" id="p-morador" value="morador" hidden
+                                    onchange="toggleFields()">
+                                <label for="p-morador" class="radio-label">Sou Morador</label>
                             </div>
 
                             <div class="form-group">
@@ -1042,7 +311,7 @@
             <div class="footer-flex">
                 <div class="footer-col" style="max-width: 300px;">
                     <div class="logo" style="margin-bottom: 20px;">
-                        <div class="logo-icon"></div> Just Go Market
+                        <img src="assets/images/logo.png" alt="Just Go Market Logo">
                     </div>
                     <p style="font-size: 0.9rem;">Tecnologia invisível e cuidado humano para condomínios em Brasília.
                     </p>
