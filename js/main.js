@@ -23,11 +23,70 @@ gsap.registerPlugin(ScrollTrigger);
 // Header Scroll Effect
 const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 20) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
+});
+
+// Mobile Menu Logic
+const menuBtn = document.querySelector('.mobile-menu-btn');
+const menuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+const mobileCta = document.querySelector('.mobile-cta');
+let isMenuOpen = false;
+
+menuBtn.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    menuBtn.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+
+    if (isMenuOpen) {
+        // Lock body scroll
+        document.body.style.overflow = 'hidden';
+        lenis.stop();
+
+        // Animate Links In
+        gsap.to(mobileLinks, {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out',
+            delay: 0.2
+        });
+        gsap.to(mobileCta, {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.6
+        });
+    } else {
+        // Unlock body scroll
+        document.body.style.overflow = '';
+        lenis.start();
+
+        // Reset Links
+        gsap.to([mobileLinks, mobileCta], {
+            y: 20,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power3.in'
+        });
+    }
+});
+
+// Close menu when clicking a link
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        isMenuOpen = false;
+        menuBtn.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        lenis.start();
+    });
 });
 
 // Form Toggle Logic & WhatsApp Dynamic Message
@@ -109,11 +168,31 @@ revealElements.forEach(el => {
         {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 1.2,
             ease: 'power3.out',
             scrollTrigger: {
                 trigger: el,
                 start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        }
+    );
+});
+
+// Staggered List Items (Split List)
+document.querySelectorAll('.split-list').forEach(list => {
+    const items = list.querySelectorAll('li');
+    gsap.fromTo(items,
+        { x: -20, opacity: 0 },
+        {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: list,
+                start: 'top 85%'
             }
         }
     );
