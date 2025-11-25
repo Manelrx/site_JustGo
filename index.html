@@ -262,6 +262,61 @@
                             <h4>Contato Direto</h4>
                             <p>
                                 (61) 99991-8007<br>
+                                justgomarket@justgomarket.com.br
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-wrapper reveal-card">
+                        <form class="form-container" id="contactForm">
+                            <div class="profile-options">
+                                <input type="radio" name="perfil" id="p-sindico" value="sindico" hidden checked
+                                    onchange="toggleFields()">
+                                <label for="p-sindico" class="radio-label">Sou Síndico</label>
+
+                                <input type="radio" name="perfil" id="p-morador" value="morador" hidden
+                                    onchange="toggleFields()">
+                                <label for="p-morador" class="radio-label">Sou Morador</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nome Completo</label>
+                                <input type="text" class="form-control" placeholder="Seu nome" id="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>WhatsApp</label>
+                                <input type="tel" class="form-control" placeholder="(61) ..." id="whatsapp" required>
+                            </div>
+
+                            <!-- Campos Síndico -->
+                            <div id="fields-syndic">
+                                <div class="form-group">
+                                    <label>Nome do Condomínio</label>
+                                    <input type="text" class="form-control" placeholder="Nome do empreendimento"
+                                        id="condoName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Qtd de Unidades</label>
+                                    <select class="form-control" id="unitCount">
+                                        <option>Até 100</option>
+                                        <option>100 a 300</option>
+                                        <option>Mais de 300</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Campos Morador -->
+                            <div id="fields-resident" style="display: none;">
+                                <div class="form-group">
+                                    <label>Indicação (Nome do Condomínio)</label>
+                                    <input type="text" class="form-control" placeholder="Onde você mora?" id="referral">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 10px;">Solicitar
+                                Visita</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -309,71 +364,8 @@
         </svg>
     </a>
 
-    <script>
-        // --- LENIS SMOOTH SCROLL ---
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smooth: true
-        });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        // --- GSAP ANIMATIONS ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Header Scroll Effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // Reveal Elements (Fade Up)
-        const revealElements = document.querySelectorAll('.reveal-text, .reveal-card');
-        revealElements.forEach(el => {
-            gsap.fromTo(el,
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } }
-            );
-        });
-
-        // Hero Stagger Animation (Entrance)
-        gsap.fromTo('.hero-stagger',
-            { y: 60, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.2 }
-        );
-
-        // Accordion Logic
-        function toggleAccordion(header) {
-            const item = header.parentElement;
-            const isActive = item.classList.contains('active');
-
-            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-
-            if (!isActive) item.classList.add('active');
-        }
-
-        // Form Toggle Logic
-        function toggleFields() {
-            const radios = document.getElementsByName('perfil');
-            const syndicFields = document.getElementById('fields-syndic');
-            const residentFields = document.getElementById('fields-resident');
-            let val = '';
-
-            for (let r of radios) if (r.checked) val = r.value;
-
-            if (val === 'sindico') {
-                syndicFields.style.display = 'block';
-                residentFields.style.display = 'none';
-                gsap.fromTo(syndicFields, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3 });
-            } else {
-                syndicFields.style.display = 'none';
-                residentFields.style.display = 'block';
-                gsap.fromTo(residentFields, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3 });
-            }
-        }
-    </script>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
     <script src="js/form-handler.js"></script>
 </body>
 
