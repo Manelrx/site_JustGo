@@ -572,7 +572,6 @@ img {
     padding: 120px 0;
     background: var(--color-offwhite);
 }
-
 .bento-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -610,27 +609,19 @@ img {
 
 @media (max-width: 768px) {
     .bento-grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 20px;
-        padding-bottom: 40px;
-        /* Space for scrollbar/shadow */
-        margin-left: -20px;
-        margin-right: -20px;
-        padding-left: 20px;
-        padding-right: 20px;
-        -webkit-overflow-scrolling: touch;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+        overflow-x: visible;
     }
 
     .bento-card {
-        min-width: 85vw;
-        scroll-snap-align: center;
-    }
-
-    /* Hide scrollbar for cleaner look */
-    .bento-grid::-webkit-scrollbar {
-        display: none;
+        min-width: auto;
+        scroll-snap-align: none;
     }
 }
 
@@ -666,7 +657,7 @@ img {
 }
 
 .split-list li::before {
-    content: '✓';
+
     position: absolute;
     left: 0;
     color: var(--color-green);
@@ -1504,4 +1495,174 @@ input[type="radio"]:checked+.radio-label {
     .about-hero {
         padding: 150px 0 100px;
     }
+}
+
+/* --- NEW ADDITIONS FOR FINAL LAYOUT --- */
+/* --- MODELO (PILLARS & TRANSPARENCY) --- */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px; /* Espaço para o box de transparência */
+}
+
+.pillar-card {
+    background: var(--color-offwhite);
+    padding: 40px 30px;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pillar-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-green);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.pillar-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(160, 226, 97, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: var(--color-green);
+    transition: var(--transition);
+}
+
+.pillar-card:hover .pillar-icon {
+    background: var(--color-green);
+    color: var(--color-black);
+    transform: scale(1.1);
+}
+
+.pillar-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--color-black);
+}
+
+.pillar-card p {
+    font-size: 1rem;
+    color: rgba(1, 5, 2, 0.7);
+    margin-bottom: 0;
+}
+
+/* Responsividade dos Pilares */
+@media (max-width: 900px) {
+    .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* --- FAQ TABS --- */
+.faq-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.faq-tab-btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: transparent;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    color: var(--color-black);
+}
+
+.faq-tab-btn.active {
+    background: var(--color-green);
+    border-color: var(--color-green);
+    color: var(--color-black);
+    font-weight: 700;
+}
+
+.faq-tab-btn:hover:not(.active) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Animação de troca de aba */
+.faq-group {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- SYNDIC BENEFITS LIST --- */
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.benefits-list li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.benefits-list strong {
+    color: var(--color-offwhite);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.benefits-list span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* --- FINAL ADJUSTMENTS --- */
+.transparency-box {
+    background-color: #1a1a1a; /* Garante fundo escuro */
+    color: var(--color-offwhite);
+    padding: 50px 40px;
+    border-radius: 24px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.transparency-box h3 {
+    color: var(--color-offwhite);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.transparency-box p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+/* Efeito de Glow Pulsante no Botão */
+.btn-glow {
+    box-shadow: 0 0 20px rgba(160, 226, 97, 0.4);
+    animation: pulse-glow 3s infinite;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 20px rgba(160, 226, 97, 0.4); }
+    50% { box-shadow: 0 0 40px rgba(160, 226, 97, 0.7); }
+    100% { box-shadow: 0 0 20px rgba(160, 226, 97, 0.4); }
 }
