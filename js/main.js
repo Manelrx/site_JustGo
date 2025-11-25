@@ -42,6 +42,45 @@ function toggleAccordion(header) {
     if (!isActive) item.classList.add('active');
 }
 
+// FAQ Tab Logic
+function switchFaq(type) {
+    // Buttons
+    document.querySelectorAll('.faq-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Find the button that was clicked (approximate match based on text or order is hard, so we rely on the onclick event context if passed, but here we are passing a string. 
+    // Better approach: The button that called this function should be active. 
+    // Since we can't easily pass 'this' in the inline onclick without changing HTML, let's select by index or text.
+    // Actually, let's just use the type to find the button index.
+    // Syndic = 0, Resident = 1
+    const buttons = document.querySelectorAll('.faq-tab-btn');
+    if (type === 'syndic') buttons[0].classList.add('active');
+    else buttons[1].classList.add('active');
+
+    // Content
+    const syndicGroup = document.getElementById('faq-syndic');
+    const residentGroup = document.getElementById('faq-resident');
+
+    if (type === 'syndic') {
+        syndicGroup.style.display = 'block';
+        residentGroup.style.display = 'none';
+
+        // Reset animation
+        syndicGroup.style.animation = 'none';
+        syndicGroup.offsetHeight; /* trigger reflow */
+        syndicGroup.style.animation = 'fadeIn 0.5s ease';
+    } else {
+        syndicGroup.style.display = 'none';
+        residentGroup.style.display = 'block';
+
+        // Reset animation
+        residentGroup.style.animation = 'none';
+        residentGroup.offsetHeight; /* trigger reflow */
+        residentGroup.style.animation = 'fadeIn 0.5s ease';
+    }
+}
+
 // Form Toggle Logic
 function toggleFields() {
     const radios = document.getElementsByName('perfil');
@@ -97,3 +136,4 @@ document.addEventListener('DOMContentLoaded', () => {
 // Expose functions to global scope for HTML onclick attributes
 window.toggleAccordion = toggleAccordion;
 window.toggleFields = toggleFields;
+window.switchFaq = switchFaq;
