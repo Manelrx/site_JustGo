@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Go Market - Apresentação Comercial Completa</title>
+    
+    <!-- Fontes Oficiais -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Wix+Madefor+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- 1. VARIÁVEIS DA MARCA --- */
+        :root {
+            --brand-green: #a0e261;
+            --brand-black: #010502;
+            --brand-gold: #C0A062;
+            --brand-white: #fffdfc;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --transition-speed: 0.6s;
+        }
+
+        /* --- 2. RESET E BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+            font-family: 'Wix Madefor Text', sans-serif;
+            overflow: hidden; /* Apenas navegação por botões */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- 3. BACKGROUND ORGÂNICO --- */
+        .ambient-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background: radial-gradient(circle at 50% 120%, #0d1f0d 0%, var(--brand-black) 70%);
+        }
+        
+        /* Padrão Sutil (Pattern G) */
+        .pattern-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--brand-green) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        /* Traço Fluido (SVG Animado) */
+        .fluid-line {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 300px; z-index: 1; opacity: 0.2; pointer-events: none;
+        }
+
+        /* --- 4. HEADER FIXO --- */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 60px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            pointer-events: none; /* Permite clicar nos slides se necessário */
+        }
+
+        .logo-img-fixed {
+            height: 50px;
+            width: auto;
+            pointer-events: auto;
+        }
+
+        /* --- 5. CONTAINER DE SLIDES --- */
+        .deck-container {
+            width: 100vw; height: 100vh; position: relative; z-index: 2;
+        }
+
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: all var(--transition-speed) ease-in-out;
+            padding: 120px 100px 60px 100px; /* Ajustado para o Header Fixo */
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1; visibility: visible; pointer-events: auto;
+        }
+
+        /* --- 6. TIPOGRAFIA --- */
+        h1, h2, h3, h4 {
+            font-family: 'Alexandria', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 { font-size: 4.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
+        h2 { font-size: 3rem; color: var(--brand-white); margin-bottom: 40px; position: relative; display: inline-block; }
+        h2::after {
+            content: ''; display: block; width: 60px; height: 4px; background: var(--brand-green); margin-top: 10px;
+        }
+        
+        p { font-size: 1.2rem; line-height: 1.6; color: #d0d0d0; max-width: 900px; font-weight: 300; margin-bottom: 20px; }
+        
+        .highlight-green { color: var(--brand-green); font-weight: 700; }
+        .highlight-gold { color: var(--brand-gold); }
+
+        /* --- 7. COMPONENTES DE DESIGN --- */
+        
+        /* Cards */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; height: 100%; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 20px; }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+        .glass-card:hover { border-color: var(--brand-green); transform: translateY(-5px); }
+
+        /* Icons */
+        .icon-large { font-size: 3rem; color: var(--brand-green); margin-bottom: 20px; }
+        .icon-gold { color: var(--brand-gold); }
+
+        /* Slide Number */
+        .slide-counter {
+            position: absolute; top: 45px; right: 60px;
+            font-family: 'Alexandria'; font-size: 1rem; color: #555;
+            letter-spacing: 2px;
+        }
+
+        /* --- 8. ANIMAÇÕES --- */
+        .animate-up { opacity: 0; transform: translateY(30px); transition: all 0.6s ease 0.2s; }
+        .slide.active .animate-up { opacity: 1; transform: translateY(0); }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* --- 9. NAVEGAÇÃO --- */
+        .nav-controls {
+            position: absolute; bottom: 40px; right: 60px; display: flex; gap: 20px; z-index: 100;
+        }
+        .nav-btn {
+            background: transparent; border: 1px solid var(--brand-white); color: var(--brand-white);
+            width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; font-size: 1.2rem;
+        }
+        .nav-btn:hover { background: var(--brand-green); border-color: var(--brand-green); color: var(--brand-black); }
+        .progress-bar {
+            position: absolute; bottom: 0; left: 0; height: 4px; background: var(--brand-green); width: 0%; transition: width 0.3s; z-index: 100;
+        }
+        
+        /* Elementos Específicos */
+        .big-number { font-size: 5rem; font-weight: 800; color: var(--brand-green); line-height: 1; font-family: 'Alexandria'; }
+        .matrix-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .matrix-label { font-weight: 600; }
+        .check-green { color: var(--brand-green); }
+
+        /* --- CSS UPDATE: SLIDE 1 (CINEMATIC) --- */
+
+        /* 1. ATMOSFERA E FUNDO */
+        .atmosphere-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: 0; pointer-events: none;
+        }
+
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15;
+            animation: orb-float 20s infinite alternate ease-in-out;
+        }
+        .orb-green {
+            width: 60vw; height: 60vw; background: var(--brand-green);
+            top: -20%; left: -10%;
+        }
+        .orb-gold {
+            width: 40vw; height: 40vw; background: var(--brand-gold);
+            bottom: -10%; right: -5%; animation-delay: -5s;
+        }
+
+        /* Textura de ruído (Noise) para aspecto premium */
+        .noise-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.07; z-index: 1; pointer-events: none;
+        }
+
+        /* 2. LAYOUT E TIPOGRAFIA */
+        .hero-wrapper {
+            position: relative; z-index: 10;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; height: 100%;
+        }
+
+        .sub-headline {
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem;
+            letter-spacing: 0.4em; /* Espaçamento bem aberto = Elegância */
+            color: #888;
+            margin-bottom: -10px; /* Aproxima do título principal */
+        }
+
+        .main-headline {
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 800;
+            font-size: clamp(4rem, 10vw, 9rem); /* Gigante e responsivo */
+            line-height: 0.9;
+            margin: 0;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.04em;
+        }
+
+        .dot {
+            color: var(--brand-green);
+            -webkit-text-fill-color: var(--brand-green); /* Garante a cor verde no ponto */
+        }
+
+        /* 3. LOGO */
+        .hero-logo-box {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .hero-logo-img {
+            width: 100px; /* Tamanho discreto e elegante */
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(160, 226, 97, 0.2));
+            transition: transform 0.5s ease;
+        }
+        .hero-logo-box:hover .hero-logo-img {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* 4. RODAPÉ DO HERO */
+        .hero-footer {
+            margin-top: 50px;
+            display: flex; flex-direction: column; align-items: center; gap: 20px;
+        }
+        .separator-line {
+            width: 2px; height: 60px;
+            background: linear-gradient(to bottom, var(--brand-green), transparent);
+        }
+        .hero-description {
+            font-family: 'Wix Madefor Text', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* 5. ELEMENTOS TECH / HUD */
+        .tech-lines {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 5;
+        }
+        .line-vertical {
+            position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.05) 20%, rgba(255,255,255,0.05) 80%, transparent 100%);
+        }
+        .corner-marker {
+            position: absolute; width: 20px; height: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .top-left { top: 40px; left: 40px; border-right: none; border-bottom: none; }
+        .bottom-right { bottom: 40px; right: 40px; border-left: none; border-top: none; }
+        
+        .scroll-hint {
+            position: absolute; bottom: 40px; left: 60px;
+            font-size: 0.7rem; letter-spacing: 2px; color: #555;
+            transform: rotate(-90deg); transform-origin: left bottom;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes orb-float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        /* --- CSS UPDATE: SLIDE 2 (CARDS) --- */
+        .quote-box {
+            margin-top: 40px;
+            padding: 30px;
+            border-left: 4px solid var(--brand-green);
+            background: linear-gradient(90deg, rgba(160, 226, 97, 0.05) 0%, transparent 100%);
+            position: relative;
+        }
+        .quote-icon {
+            position: absolute; top: 10px; left: 10px; font-size: 1.5rem; color: var(--brand-green); opacity: 0.3;
+        }
+
+        .problem-visuals {
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .map-grid-bg {
+            position: absolute; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+            z-index: 0;
+        }
+
+        .problem-card {
+            position: absolute;
+            width: 320px;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+            animation: float-card 6s ease-in-out infinite;
+        }
+
+        .problem-card:hover {
+            border-color: var(--brand-green);
+            background: rgba(20, 20, 20, 0.8);
+            z-index: 10;
+        }
+
+        .p-icon-box {
+            min-width: 50px; height: 50px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            display: flex; justify-content: center; align-items: center;
+            color: var(--brand-green);
+            font-size: 1.4rem;
+        }
+
+        .p-title {
+            font-family: 'Alexandria'; font-weight: 700; font-size: 0.9rem; color: #fff; margin-bottom: 5px; letter-spacing: 1px;
+        }
+        .p-desc {
+            font-size: 0.85rem; color: #aaa; line-height: 1.3;
+        }
+
+        .card-1 { top: 15%; right: 10%; animation-delay: 0s; }
+        .card-2 { top: 45%; left: 5%; animation-delay: 1s; border-left: 3px solid var(--brand-green); }
+        .card-3 { bottom: 15%; right: 15%; animation-delay: 2s; }
+
+        @keyframes float-card {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* --- CSS UPDATE: SLIDE 10 (REACTOR) --- */
+        .reactor-ring {
+            width: 220px; height: 220px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 2px solid rgba(160, 226, 97, 0.3);
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+            box-shadow: 0 0 30px rgba(160, 226, 97, 0.1);
+            animation: breathe 4s infinite ease-in-out;
+        }
+        
+        .reactor-ring::before {
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--brand-green);
+            border-bottom-color: var(--brand-green);
+            animation: spin-slow 10s infinite linear;
+        }
+
+        .reactor-value {
+            font-size: 7rem;
+            text-shadow: 0 0 20px rgba(160, 226, 97, 0.4);
+        }
+
+        .investment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .inv-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .inv-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .inv-icon { font-size: 1.5rem; color: #888; }
+        .inv-title { font-family: 'Alexandria'; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 4px; }
+        .inv-desc { font-size: 0.75rem; color: #aaa; line-height: 1.3; }
+
+        .item-gold {
+            grid-column: span 2;
+            background: linear-gradient(90deg, rgba(192, 160, 98, 0.1) 0%, transparent 100%);
+            border-color: var(--brand-gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pulse-dot {
+            position: absolute; right: 15px; top: 15px;
+            width: 8px; height: 8px; background: var(--brand-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--brand-gold);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes spin-slow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes breathe { 0%, 100% { box-shadow: 0 0 30px rgba(160, 226, 97, 0.1); } 50% { box-shadow: 0 0 50px rgba(160, 226, 97, 0.3); } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    </style>
+</head>
+<body>
+
+<div class="ambient-bg">
+    <div class="pattern-overlay"></div>
+    <svg class="fluid-line" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="none" stroke="#a0e261" stroke-width="2" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192"></path>
+    </svg>
+</div>
+
+<!-- HEADER FIXO -->
+<header class="fixed-header">
+    <img src="logoname.png" alt="Just Go Market" class="logo-img-fixed">
+</header>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="deck-container">
+
+    <!-- SLIDE 1: CAPA -->
+    <div class="slide active">
+        <div class="slide-counter">01 / 15</div>
+        
+        <!-- 1. CAMADA ATMOSFÉRICA (Fundo Vivo) -->
+        <div class="atmosphere-bg">
+            <div class="orb orb-green"></div>
+            <div class="orb orb-gold"></div>
+            <div class="noise-overlay"></div>
+        </div>
+
+        <!-- 2. ELEMENTOS TECH DECORATIVOS (HUD Minimalista) -->
+        <div class="tech-lines">
+            <div class="line-vertical"></div>
+            <div class="corner-marker top-left"></div>
+            <div class="corner-marker bottom-right"></div>
+            <div class="scroll-hint">SCROLL TO EXPLORE</div>
+        </div>
+
+        <!-- 3. CONTEÚDO HERO -->
+        <div class="hero-wrapper">
+            
+            <!-- Logo Flutuante (A "Jóia") -->
+            <div class="hero-logo-box animate-up delay-1">
+                 <!-- SUBSTITUA PELO SEU PNG -->
+                <img src="logoname.png" alt="Logo Just Go Market" class="hero-logo-img">
+            </div>
+
+            <!-- Título Tipográfico (Kinetic) -->
+            <div class="hero-text-group">
+                <h2 class="sub-headline animate-up delay-2">O LUXO DO</h2>
+                <h1 class="main-headline animate-up delay-3">IMEDIATO<span class="dot">.</span></h1>
+            </div>
+
+            <!-- Texto de Apoio e Separador -->
+            <div class="hero-footer animate-up delay-4">
+                <div class="separator-line"></div>
+                <p class="hero-description">
+                    CONVENIÊNCIA AUTÔNOMA <br>
+                    <span style="color: #666;">INTEGRADA AO SEU ESTILO DE VIDA.</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SLIDE 2: CONTEXTO URBANO -->
+    <div class="slide">
+        <div class="slide-counter">02 / 15</div>
+        
+        <div class="grid-2">
+            <!-- LADO ESQUERDO: TEXTO E ARGUMENTO -->
+            <div style="padding-right: 40px;">
+                <div class="animate-up delay-1" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <div style="width: 30px; height: 2px; background: var(--brand-green);"></div>
+                    <span style="font-family: 'Alexandria'; font-size: 0.9rem; letter-spacing: 2px; color: #888;">CONTEXTO URBANO</span>
+                </div>
+
+                <h2 class="animate-up delay-2" style="font-size: 3.5rem; line-height: 1.1;">
+                    A VIDA URBANA <br>
+                    CRIA <span class="highlight-green">DISTÂNCIAS.</span>
+                </h2>
+                
+                <p class="animate-up delay-3" style="font-size: 1.2rem; color: #ccc; margin-top: 30px;">
+                    Sua casa deve ser seu refúgio, mas a cidade exige que você saia. O que deveria ser uma compra simples de 5 minutos se torna uma jornada de trânsito, filas e tempo perdido.
+                </p>
+                
+                <div class="animate-up delay-4 quote-box">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p style="font-size: 1.4rem; color: #fff; font-weight: 600; margin: 0;">
+                        A conveniência externa deixou de ser conveniente.
+                    </p>
+                </div>
+            </div>
+
+            <!-- LADO DIREITO: CARDS FLUTUANTES (OBSTÁCULOS) -->
+            <div class="problem-visuals">
+                <!-- Background Decorativo de Mapa/Grid -->
+                <div class="map-grid-bg"></div>
+
+                <!-- Card 1: Trânsito -->
+                <div class="problem-card card-1 animate-up delay-2">
+                    <div class="p-icon-box"><i class="fa-solid fa-car-side"></i></div>
+                    <div>
+                        <div class="p-title">MOBILIDADE</div>
+                        <div class="p-desc">Trânsito imprevisível e stress no deslocamento.</div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tempo -->
+                <div class="problem-card card-2 animate-up delay-3">
+                    <div class="p-icon-box"><i class="fa-solid fa-hourglass-half"></i></div>
+                    <div>
+                        <div class="p-title">TEMPO PERDIDO</div>
+                        <div class="p-desc">Filas e espera para comprar itens básicos.</div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Distância -->
+                <div class="problem-card card-3 animate-up delay-4">
+                    <div class="p-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <div class="p-title">DISTÂNCIA FÍSICA</div>
+                        <div class="p-desc">O "mercadinho" não é mais tão perto assim.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: CUSTO INVISÍVEL -->
+    <div class="slide">
+        <div class="slide-counter">03 / 15</div>
+        <h2 class="animate-up delay-1">O CUSTO REAL DA "SAIDINHA"</h2>
+        <p class="animate-up delay-1" style="margin-bottom: 50px;">Quanto custa não ter conveniência no térreo?</p>
+        
+        <div class="grid-3">
+            <div class="glass-card animate-up delay-2">
+                <div class="big-number">40<span style="font-size: 2rem">min</span></div>
+                <h3 style="margin: 15px 0;">PERDIDOS</h3>
+                <p style="font-size: 1rem;">Tempo médio gasto em trânsito, estacionamento e filas para comprar poucos itens.</p>
+            </div>
+            <div class="glass-card animate-up delay-3">
+                <div class="big-number">R$15</div>
+                <h3 style="margin: 15px 0;">TAXAS</h3>
+                <p style="font-size: 1rem;">Custo médio de delivery. Em um mês, isso pode somar mais de R$ 200,00 só em frete.</p>
+            </div>
+            <div class="glass-card animate-up delay-4">
+                <div class="big-number"><i class="fa-solid fa-bolt"></i></div>
+                <h3 style="margin: 15px 0;">STRESS</h3>
+                <p style="font-size: 1rem;">A interrupção do seu momento de descanso ou lazer em família.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: A SOLUÇÃO -->
+    <div class="slide">
+        <div class="slide-counter">04 / 15</div>
+        <div class="grid-2">
+            <div>
+                <h4 style="color: var(--brand-green); letter-spacing: 2px; margin-bottom: 10px;" class="animate-up delay-1">APRESENTAMOS</h4>
+                <h2 class="animate-up delay-2">JUST GO MARKET</h2>
+                <p class="animate-up delay-3">
+                    Um mercado autônomo de alto padrão instalado dentro do seu condomínio.
+                </p>
+                <ul style="list-style: none; margin-top: 30px;" class="animate-up delay-4">
+                    <li style="margin-bottom: 15px; font-size: 1.2rem;"><i class="fa-solid fa-check check-green"></i> Aberto 24 horas</li>
+                    <li style="margin-bottom: 15px; font-size: 1.2rem;"><i class="fa-solid fa-check check-green"></i> Sem funcionários fixos</li>
+                    <li style="margin-bottom: 15px; font-size: 1.2rem;"><i class="fa-solid fa-check check-green"></i> 100% Autônomo</li>
+                </ul>
+            </div>
+            <div class="glass-card animate-up delay-4" style="text-align: center; border-color: var(--brand-green);">
+                <i class="fa-solid fa-shop" style="font-size: 5rem; color: #fff; margin-bottom: 20px;"></i>
+                <h3 style="color: var(--brand-green);">A SOLUÇÃO MORA NO TÉRREO.</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: CONCEITO BIO-TECH -->
+    <div class="slide">
+        <div class="slide-counter">05 / 15</div>
+        <h2 class="animate-up delay-1">CONCEITO <span class="highlight-green">BIO-TECH</span> PREMIUM</h2>
+        <div class="grid-2">
+            <div class="glass-card animate-up delay-2">
+                <i class="fa-solid fa-leaf icon-large"></i>
+                <h3>BIO (HUMANIZAÇÃO)</h3>
+                <p>Ambientes projetados com elementos naturais, madeira e iluminação quente. Fugimos da estética fria de "vending machine". Um espaço de convivência e bem-estar.</p>
+            </div>
+            <div class="glass-card animate-up delay-3">
+                <i class="fa-solid fa-microchip icon-large"></i>
+                <h3>TECH (EFICIÊNCIA)</h3>
+                <p>Por trás do design, tecnologia de ponta. Gestão de estoque inteligente, controle de acesso biométrico e pagamentos sem fricção.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: PILARES -->
+    <div class="slide">
+        <div class="slide-counter">06 / 15</div>
+        <h2 class="animate-up delay-1">PILARES DA EXPERIÊNCIA</h2>
+        <div class="grid-3">
+            <div class="glass-card animate-up delay-2">
+                <i class="fa-solid fa-clock icon-large"></i>
+                <h3>24 HORAS</h3>
+                <p style="font-size: 1rem;">A loja nunca fecha. Madrugada, feriado ou domingo. Sua despensa está sempre disponível.</p>
+            </div>
+            <div class="glass-card animate-up delay-3">
+                <i class="fa-solid fa-user-shield icon-large"></i>
+                <h3>PRIVACIDADE</h3>
+                <p style="font-size: 1rem;">Compre de pijama se quiser. Sem atendentes, sem julgamentos. Liberdade total.</p>
+            </div>
+            <div class="glass-card animate-up delay-4">
+                <i class="fa-solid fa-mobile-screen-button icon-large"></i>
+                <h3>AUTONOMIA</h3>
+                <p style="font-size: 1rem;">Você no controle. Escolha, escaneie e pague. Processo de compra em segundos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: MIX PRODUTOS -->
+    <div class="slide">
+        <div class="slide-counter">07 / 15</div>
+        <h2 class="animate-up delay-1">CURADORIA <span class="highlight-gold">PREMIUM</span></h2>
+        <p class="animate-up delay-1">Não vendemos apenas produtos, vendemos soluções para momentos.</p>
+        
+        <div class="grid-3">
+            <div class="glass-card animate-up delay-2" style="border-top: 4px solid var(--brand-gold);">
+                <i class="fa-solid fa-wine-glass icon-large icon-gold"></i>
+                <h3 class="highlight-gold">ADEGA & GOURMET</h3>
+                <p style="font-size: 0.9rem;">Vinhos selecionados, cervejas artesanais, queijos finos, chocolates importados e massas. Para o jantar especial de última hora.</p>
+            </div>
+            <div class="glass-card animate-up delay-3" style="border-top: 4px solid var(--brand-gold);">
+                <i class="fa-solid fa-basket-shopping icon-large icon-gold"></i>
+                <h3 class="highlight-gold">EMPÓRIO DIA A DIA</h3>
+                <p style="font-size: 0.9rem;">Leite, pão, café, ovos, matinais e snacks. A reposição rápida da sua despensa sem sair de casa.</p>
+            </div>
+            <div class="glass-card animate-up delay-4" style="border-top: 4px solid var(--brand-gold);">
+                <i class="fa-solid fa-kit-medical icon-large icon-gold"></i>
+                <h3 class="highlight-gold">S.O.S. EMERGÊNCIA</h3>
+                <p style="font-size: 0.9rem;">Gelo, carvão, itens de higiene pessoal e limpeza. A salvação quando você mais precisa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: TECNOLOGIA -->
+    <div class="slide">
+        <div class="slide-counter">08 / 15</div>
+        <div class="grid-2">
+            <div>
+                <h2 class="animate-up delay-1">TECNOLOGIA INVISÍVEL</h2>
+                <p class="animate-up delay-2">O complexo fica nos bastidores. Para o usuário, tudo é simples.</p>
+                
+                <div class="glass-card animate-up delay-3" style="margin-top: 20px;">
+                    <h3><i class="fa-solid fa-qrcode check-green"></i> SCAN & GO</h3>
+                    <p style="font-size: 1rem; margin-top: 10px;">Basta apontar a câmera do celular ou usar o leitor de código de barras no totem. A identificação do produto é instantânea.</p>
+                </div>
+                
+                <div class="glass-card animate-up delay-4" style="margin-top: 20px;">
+                    <h3><i class="fa-solid fa-credit-card check-green"></i> PAGAMENTO FLUIDO</h3>
+                    <p style="font-size: 1rem; margin-top: 10px;">Aceitamos Pix, Crédito e Débito diretamente no totem ou via App. Sem filas no caixa.</p>
+                </div>
+            </div>
+            <div class="animate-up delay-4" style="display: flex; justify-content: center; align-items: center;">
+                <i class="fa-solid fa-mobile-screen" style="font-size: 12rem; color: #333; border: 4px solid var(--brand-green); border-radius: 20px; padding: 20px;"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: SEGURANÇA -->
+    <div class="slide">
+        <div class="slide-counter">09 / 15</div>
+        <h2 class="animate-up delay-1">SEGURANÇA TOTAL</h2>
+        <p class="animate-up delay-1">Uma preocupação central para qualquer condomínio.</p>
+
+        <div class="grid-2">
+            <div class="glass-card animate-up delay-2">
+                <i class="fa-solid fa-id-card-clip icon-large"></i>
+                <h3>CONTROLE DE ACESSO</h3>
+                <p>A loja permanece trancada. A porta só abre mediante identificação positiva (Biometria Facial ou App) de moradores previamente cadastrados na base do condomínio.</p>
+            </div>
+            <div class="glass-card animate-up delay-3">
+                <i class="fa-solid fa-video icon-large"></i>
+                <h3>MONITORAMENTO 24H</h3>
+                <p>Câmeras de alta definição cobrem 100% da loja, conectadas à nossa central de segurança. Qualquer anomalia é detectada em tempo real.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: MODELO DE NEGÓCIO -->
+    <div class="slide">
+        <div class="slide-counter">10 / 15</div>
+        
+        <div class="grid-2" style="align-items: center;">
+            
+            <div style="text-align: center; position: relative;">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(160, 226, 97, 0.2) 0%, transparent 70%); z-index: -1;"></div>
+                
+                <div class="reactor-ring">
+                    <span class="big-number reactor-value">0</span>
+                </div>
+                
+                <h3 class="animate-up delay-2" style="margin-top: 30px; letter-spacing: 2px; font-size: 1.2rem;">CUSTO PARA O CONDOMÍNIO</h3>
+                <p class="animate-up delay-3" style="font-size: 0.9rem; color: #888; margin-top: 10px;">(Zero Opex. Zero Capex.)</p>
+            </div>
+
+            <div style="padding-left: 40px;">
+                <h2 class="animate-up delay-1" style="font-size: 2.5rem; margin-bottom: 30px;">
+                    VALORIZAÇÃO REAL.<br>RISCO <span class="highlight-green">ZERO</span>.
+                </h2>
+                
+                <p class="animate-up delay-2" style="margin-bottom: 25px; color: #ccc;">Nós assumimos 100% dos custos de implantação e operação:</p>
+
+                <div class="investment-grid animate-up delay-3">
+                    <div class="inv-item">
+                        <i class="fa-solid fa-helmet-safety inv-icon"></i>
+                        <div>
+                            <div class="inv-title">Obras & Projeto</div>
+                            <div class="inv-desc">Arquitetura e reforma civil</div>
+                        </div>
+                    </div>
+
+                    <div class="inv-item">
+                        <i class="fa-solid fa-couch inv-icon"></i>
+                        <div>
+                            <div class="inv-title">Mobiliário</div>
+                            <div class="inv-desc">Marcenaria e Equipamentos</div>
+                        </div>
+                    </div>
+
+                    <div class="inv-item">
+                        <i class="fa-solid fa-layer-group inv-icon"></i>
+                        <div>
+                            <div class="inv-title">Estoque Inicial</div>
+                            <div class="inv-desc">Mix completo de produtos</div>
+                        </div>
+                    </div>
+
+                    <div class="inv-item item-gold">
+                        <div class="pulse-dot"></div>
+                        <i class="fa-solid fa-bolt inv-icon icon-gold"></i>
+                        <div>
+                            <div class="inv-title highlight-gold">CONTA DE LUZ</div>
+                            <div class="inv-desc" style="color: #fff;">100% paga pela JGM (Medidor Exclusivo)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-up delay-4" style="margin-top: 25px; display: flex; align-items: center; gap: 15px; opacity: 0.7;">
+                    <i class="fa-solid fa-hand-holding-dollar" style="color: var(--brand-green);"></i>
+                    <span style="font-size: 0.9rem;">O condomínio entra apenas com o espaço físico.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: RESPONSABILIDADES -->
+    <div class="slide">
+        <div class="slide-counter">11 / 15</div>
+        <h2 class="animate-up delay-1">MATRIZ DE RESPONSABILIDADE</h2>
+        <p class="animate-up delay-1">Tranquilidade para o síndico: nós cuidamos da operação e dos custos.</p>
+
+        <div class="glass-card animate-up delay-2" style="margin-top: 30px; padding: 40px;">
+            <div class="matrix-row">
+                <span class="matrix-label">Limpeza da Loja</span>
+                <span class="highlight-green">JUST GO MARKET</span>
+            </div>
+            <div class="matrix-row">
+                <span class="matrix-label">Reposição de Produtos</span>
+                <span class="highlight-green">JUST GO MARKET</span>
+            </div>
+            <div class="matrix-row">
+                <span class="matrix-label">Manutenção de Equipamentos</span>
+                <span class="highlight-green">JUST GO MARKET</span>
+            </div>
+            <div class="matrix-row">
+                <span class="matrix-label">Energia Elétrica</span>
+                <span class="highlight-green">JUST GO MARKET</span>
+            </div>
+            <div class="matrix-row">
+                <span class="matrix-label">Atendimento ao Cliente (SAC)</span>
+                <span class="highlight-green">JUST GO MARKET</span>
+            </div>
+            <div class="matrix-row" style="border-bottom: none;">
+                <span class="matrix-label">Ceder Espaço</span>
+                <span style="color: #ccc;">CONDOMÍNIO</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: VALORIZAÇÃO PATRIMONIAL (NOVO) -->
+    <div class="slide">
+        <div class="slide-counter">12 / 15</div>
+        <h2 class="animate-up delay-1">ASSET MANAGEMENT</h2>
+        <p class="animate-up delay-1">Mais que comodidade, um investimento estratégico no patrimônio.</p>
+        
+        <div class="grid-2">
+            <div>
+                <div class="glass-card animate-up delay-2" style="margin-bottom: 20px; border-left: 4px solid var(--brand-gold);">
+                    <h3 class="highlight-gold"><i class="fa-solid fa-chart-line"></i> LIQUIDEZ IMOBILIÁRIA</h3>
+                    <p style="margin-top: 10px;">Imóveis em condomínios com conveniência autônoma têm maior procura e velocidade de locação/venda. É um "must-have" para o novo morador.</p>
+                </div>
+                
+                <div class="glass-card animate-up delay-3" style="border-left: 4px solid var(--brand-green);">
+                    <h3 class="highlight-green"><i class="fa-solid fa-trophy"></i> DIFERENCIAL COMPETITIVO</h3>
+                    <p style="margin-top: 10px;">Destaque seu condomínio frente aos vizinhos. Em um mercado saturado, serviços exclusivos definem a escolha.</p>
+                </div>
+            </div>
+            
+            <div class="glass-card animate-up delay-4">
+                <h3 style="margin-bottom: 20px;">CHECKLIST DE VALORIZAÇÃO</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-check-circle check-green"></i> Modernização da Área Comum
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-check-circle check-green"></i> Serviço 24h sem Custo Trabalhista
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-check-circle check-green"></i> Tecnologia Embarcada
+                    </li>
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-check-circle check-green"></i> Segurança e Controle
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 13: PERFIL -->
+    <div class="slide">
+        <div class="slide-counter">13 / 15</div>
+        <h2 class="animate-up delay-1">PARA QUEM É?</h2>
+        <div class="grid-3">
+            <div class="glass-card animate-up delay-2">
+                <h3 style="color: var(--brand-green);">FAMÍLIAS</h3>
+                <p style="font-size: 0.9rem; margin-top: 10px;">Que precisam repor o leite da manhã ou o lanche da escola sem pegar o carro.</p>
+            </div>
+            <div class="glass-card animate-up delay-3">
+                <h3 style="color: var(--brand-green);">JOVENS/SOLTEIROS</h3>
+                <p style="font-size: 0.9rem; margin-top: 10px;">Que valorizam tempo, tecnologia e snacks para a madrugada.</p>
+            </div>
+            <div class="glass-card animate-up delay-4">
+                <h3 style="color: var(--brand-green);">HOME OFFICE</h3>
+                <p style="font-size: 0.9rem; margin-top: 10px;">O "coffee break" profissional a um elevador de distância.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 14: IMPLANTAÇÃO -->
+    <div class="slide">
+        <div class="slide-counter">14 / 15</div>
+        <h2 class="animate-up delay-1">PASSO A PASSO</h2>
+        <p class="animate-up delay-1">O processo é simples e transparente.</p>
+        
+        <div style="margin-top: 40px;">
+            <div class="animate-up delay-2" style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</div>
+                <p style="margin: 0; color: #fff;">Visita Técnica e Estudo de Viabilidade (Gratuito).</p>
+            </div>
+            <div class="animate-up delay-3" style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</div>
+                <p style="margin: 0; color: #fff;">Aprovação do Projeto em Assembleia.</p>
+            </div>
+            <div class="animate-up delay-4" style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</div>
+                <p style="margin: 0; color: #fff;">Assinatura do Contrato (Cessão de Espaço).</p>
+            </div>
+            <div class="animate-up delay-4" style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">4</div>
+                <p style="margin: 0; color: #fff;">Obras e Instalação (Prazo médio: 30 a 45 dias).</p>
+            </div>
+            <div class="animate-up delay-4" style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+                <div style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">5</div>
+                <p style="margin: 0; color: #fff;">Inauguração.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 15: CTA FINAL -->
+    <div class="slide">
+        <div class="slide-counter">15 / 15</div>
+        <div style="text-align: center;">
+            <div class="logo-comp-fixed animate-up delay-1" style="justify-content: center; margin-bottom: 20px; position: static; pointer-events: none;">
+                <!-- Logo centralizada para o final -->
+                 <img src="logoname.png" alt="Just Go Market" class="logo-img-fixed" style="height: 80px;">
+            </div>
+            
+            <h1 class="animate-up delay-2">VAMOS ELEVAR O PADRÃO<br>DO SEU CONDOMÍNIO?</h1>
+            
+            <div class="animate-up delay-3" style="margin-top: 40px; display: inline-block; padding: 40px; border: 1px solid var(--brand-white); border-radius: 12px; background: rgba(255,255,255,0.05);">
+                <!-- Placeholder QR Code Design -->
+                <div style="width: 200px; height: 200px; background: #fff; margin: 0 auto; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
+                    <i class="fa-solid fa-qrcode" style="font-size: 8rem; color: #000;"></i>
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 1.2rem; color: #fff;">Agende agora uma visita técnica.</p>
+                
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px; font-size: 1.3rem;">
+                    <div><i class="fa-brands fa-whatsapp" style="color: var(--brand-green);"></i> (61) 99991-8007</div>
+                    <div><i class="fa-solid fa-envelope" style="color: var(--brand-green);"></i> contato@justgomarket.com.br</div>
+                    <div><i class="fa-solid fa-globe" style="color: var(--brand-green);"></i> www.justgomarket.com.br</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- CONTROLES -->
+<div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="nav-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progressBar');
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+        // Atualiza Barra de Progresso
+        const progress = ((currentSlide + 1) / totalSlides) * 100;
+        progressBar.style.width = progress + '%';
+
+        // Atualiza Slides
+        slides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.classList.add('active');
+                // Reinicia animações CSS
+                const content = slide.querySelectorAll('.animate-up');
+                content.forEach(el => {
+                    el.style.animation = 'none';
+                    el.offsetHeight; /* trigger reflow */
+                    el.style.animation = null; 
+                });
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlide();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+        }
+    }
+
+    // Navegação por Teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Inicialização
+    updateSlide();
+</script>
+
+</body>
+</html>
