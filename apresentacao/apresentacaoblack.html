@@ -4,33 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Go Market - Apresentação Platinum</title>
+    <title>Just Go Market - Apresentação Comercial Completa</title>
 
+    <!-- Fontes Oficiais -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Wix+Madefor+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Wix+Madefor+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- 1. VARIÁVEIS DA MARCA (PLATINUM THEME) --- */
+        /* --- 1. VARIÁVEIS DA MARCA --- */
         :root {
-            --brand-green: #8bc34a;
-            /* Verde um pouco mais escuro para contraste no branco */
-            --brand-green-light: #a0e261;
-            --brand-dark: #1a1a1a;
-            /* Texto principal - não usar preto puro */
-            --brand-grey: #555555;
-            /* Texto secundário */
+            --brand-green: #a0e261;
+            --brand-black: #010502;
             --brand-gold: #C0A062;
-            --bg-color: #f8f9fa;
-            /* Fundo Off-White */
-            --card-bg: rgba(255, 255, 255, 0.65);
-            /* Vidro branco */
-            --glass-border: rgba(255, 255, 255, 0.8);
-            --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.08);
+            --brand-white: #fffdfc;
+            --brand-white: #fffdfc;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --transition-speed: 0.6s;
         }
 
@@ -42,17 +35,18 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--brand-dark);
+            background-color: var(--brand-black);
+            color: var(--brand-white);
             font-family: 'Wix Madefor Text', sans-serif;
             overflow: hidden;
+            /* Apenas navegação por botões */
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* --- 3. BACKGROUND PREMIUM --- */
+        /* --- 3. BACKGROUND ORGÂNICO --- */
         .ambient-bg {
             position: absolute;
             top: 0;
@@ -60,25 +54,23 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: radial-gradient(circle at 50% -20%, #ffffff 0%, #ebebeb 100%);
+            background: radial-gradient(circle at 50% 120%, #0d1f0d 0%, var(--brand-black) 70%);
         }
 
-        /* Grid Tecnológico Sutil */
+        /* Padrão Sutil (Pattern G) */
         .pattern-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.6;
+            background-image: radial-gradient(var(--brand-green) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.03;
             z-index: 0;
         }
 
-        /* Traço Fluido */
+        /* Traço Fluido (SVG Animado) */
         .fluid-line {
             position: absolute;
             bottom: 0;
@@ -86,9 +78,8 @@
             width: 100%;
             height: 300px;
             z-index: 1;
-            opacity: 0.4;
+            opacity: 0.2;
             pointer-events: none;
-            filter: drop-shadow(0 0 10px rgba(160, 226, 97, 0.3));
         }
 
         /* --- 4. HEADER FIXO --- */
@@ -103,14 +94,13 @@
             align-items: center;
             gap: 15px;
             pointer-events: none;
+            /* Permite clicar nos slides se necessário */
         }
 
         .logo-img-fixed {
             height: 50px;
             width: auto;
             pointer-events: auto;
-            /* TRUQUE: Inverte a cor do logo branco para preto para aparecer no fundo claro */
-            filter: invert(1) hue-rotate(180deg) brightness(0.6);
         }
 
         /* --- 5. CONTAINER DE SLIDES --- */
@@ -130,9 +120,9 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
-            transition: all var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
-            /* Animação mais suave */
+            transition: all var(--transition-speed) ease-in-out;
             padding: 120px 100px 60px 100px;
+            /* Ajustado para o Header Fixo */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -151,23 +141,19 @@
         h4 {
             font-family: 'Alexandria', sans-serif;
             text-transform: uppercase;
-            letter-spacing: -0.03em;
-            color: var(--brand-dark);
+            letter-spacing: -0.02em;
         }
 
         h1 {
             font-size: 4.5rem;
-            font-weight: 800;
-            line-height: 1;
+            font-weight: 700;
+            line-height: 1.1;
             margin-bottom: 20px;
-            background: -webkit-linear-gradient(45deg, #1a1a1a, #555);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         h2 {
             font-size: 3rem;
-            color: var(--brand-dark);
+            color: var(--brand-white);
             margin-bottom: 40px;
             position: relative;
             display: inline-block;
@@ -180,15 +166,14 @@
             height: 4px;
             background: var(--brand-green);
             margin-top: 10px;
-            border-radius: 2px;
         }
 
         p {
             font-size: 1.2rem;
             line-height: 1.6;
-            color: var(--brand-grey);
+            color: #d0d0d0;
             max-width: 900px;
-            font-weight: 400;
+            font-weight: 300;
             margin-bottom: 20px;
         }
 
@@ -201,7 +186,9 @@
             color: var(--brand-gold);
         }
 
-        /* --- 7. CARDS "FROSTED GLASS" --- */
+        /* --- 7. COMPONENTES DE DESIGN --- */
+
+        /* Cards */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -218,40 +205,17 @@
         }
 
         .glass-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 16px;
-            padding: 35px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-soft);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Brilho sutil no hover */
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transform: translateX(-100%);
-            transition: 0.6s;
-        }
-
-        .glass-card:hover::before {
-            transform: translateX(100%);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
         }
 
         .glass-card:hover {
             border-color: var(--brand-green);
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-5px);
         }
 
         /* Icons */
@@ -259,12 +223,10 @@
             font-size: 3rem;
             color: var(--brand-green);
             margin-bottom: 20px;
-            filter: drop-shadow(0 5px 10px rgba(160, 226, 97, 0.3));
         }
 
         .icon-gold {
             color: var(--brand-gold);
-            filter: drop-shadow(0 5px 10px rgba(192, 160, 98, 0.3));
         }
 
         /* Slide Number */
@@ -274,16 +236,15 @@
             right: 60px;
             font-family: 'Alexandria';
             font-size: 1rem;
-            color: #aaa;
+            color: #555;
             letter-spacing: 2px;
-            font-weight: 600;
         }
 
         /* --- 8. ANIMAÇÕES --- */
         .animate-up {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.215, 0.610, 0.355, 1) 0.2s;
+            transition: all 0.6s ease 0.2s;
         }
 
         .slide.active .animate-up {
@@ -318,9 +279,9 @@
         }
 
         .nav-btn {
-            background: #fff;
-            border: 1px solid #ddd;
-            color: var(--brand-dark);
+            background: transparent;
+            border: 1px solid var(--brand-white);
+            color: var(--brand-white);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -330,21 +291,19 @@
             justify-content: center;
             align-items: center;
             font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-btn:hover {
             background: var(--brand-green);
             border-color: var(--brand-green);
-            color: #fff;
-            transform: scale(1.1);
+            color: var(--brand-black);
         }
 
         .progress-bar {
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 6px;
+            height: 4px;
             background: var(--brand-green);
             width: 0%;
             transition: width 0.3s;
@@ -355,31 +314,29 @@
         .big-number {
             font-size: 5rem;
             font-weight: 800;
-            color: var(--brand-dark);
-            /* Escuro para contraste */
+            color: var(--brand-green);
             line-height: 1;
             font-family: 'Alexandria';
-            letter-spacing: -2px;
         }
 
         .matrix-row {
             display: flex;
             justify-content: space-between;
             padding: 15px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            /* Divisor sutil */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .matrix-label {
             font-weight: 600;
-            color: var(--brand-grey);
         }
 
         .check-green {
             color: var(--brand-green);
         }
 
-        /* --- SLIDE 1 (CINEMATIC WHITE) --- */
+        /* --- CSS UPDATE: SLIDE 1 (CINEMATIC) --- */
+
+        /* 1. ATMOSFERA E FUNDO */
         .atmosphere-bg {
             position: absolute;
             top: 0;
@@ -394,17 +351,15 @@
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.4;
-            /* Mais suave no branco */
+            filter: blur(80px);
+            opacity: 0.15;
             animation: orb-float 20s infinite alternate ease-in-out;
         }
 
         .orb-green {
             width: 60vw;
             height: 60vw;
-            background: #d6f5b5;
-            /* Verde Pastel */
+            background: var(--brand-green);
             top: -20%;
             left: -10%;
         }
@@ -412,13 +367,26 @@
         .orb-gold {
             width: 40vw;
             height: 40vw;
-            background: #f7e8c6;
-            /* Ouro Pastel */
+            background: var(--brand-gold);
             bottom: -10%;
             right: -5%;
             animation-delay: -5s;
         }
 
+        /* Textura de ruído (Noise) para aspecto premium */
+        .noise-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.07;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* 2. LAYOUT E TIPOGRAFIA */
         .hero-wrapper {
             position: relative;
             z-index: 10;
@@ -432,43 +400,53 @@
 
         .sub-headline {
             font-family: 'Alexandria', sans-serif;
-            font-weight: 400;
+            font-weight: 300;
             font-size: 1.5rem;
             letter-spacing: 0.4em;
-            color: #999;
+            /* Espaçamento bem aberto = Elegância */
+            color: #888;
             margin-bottom: -10px;
+            /* Aproxima do título principal */
         }
 
         .main-headline {
             font-family: 'Alexandria', sans-serif;
             font-weight: 800;
             font-size: clamp(4rem, 10vw, 9rem);
+            /* Gigante e responsivo */
             line-height: 0.9;
             margin: 0;
-            color: var(--brand-dark);
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -0.04em;
-            background: none;
-            -webkit-text-fill-color: var(--brand-dark);
         }
 
         .dot {
             color: var(--brand-green);
             -webkit-text-fill-color: var(--brand-green);
+            /* Garante a cor verde no ponto */
         }
 
+        /* 3. LOGO */
         .hero-logo-box {
             margin-bottom: 40px;
             position: relative;
         }
 
         .hero-logo-img {
-            width: 120px;
+            width: 100px;
+            /* Tamanho discreto e elegante */
             height: auto;
-            /* Inverter cor para o tema claro */
-            filter: invert(1) hue-rotate(180deg) brightness(0.6);
+            filter: drop-shadow(0 0 20px rgba(160, 226, 97, 0.2));
             transition: transform 0.5s ease;
         }
 
+        .hero-logo-box:hover .hero-logo-img {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* 4. RODAPÉ DO HERO */
         .hero-footer {
             margin-top: 50px;
             display: flex;
@@ -488,25 +466,35 @@
             font-size: 0.9rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--brand-dark);
+            color: #fff;
             line-height: 1.6;
         }
 
-        /* Tech Lines (Adaptadas para fundo branco) */
+        /* 5. ELEMENTOS TECH / HUD */
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
         .line-vertical {
             position: absolute;
             left: 50%;
             top: 0;
             bottom: 0;
             width: 1px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.05) 80%, transparent 100%);
+            background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.05) 80%, transparent 100%);
         }
 
         .corner-marker {
             position: absolute;
             width: 20px;
             height: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .top-left {
@@ -529,11 +517,12 @@
             left: 60px;
             font-size: 0.7rem;
             letter-spacing: 2px;
-            color: #999;
+            color: #555;
             transform: rotate(-90deg);
             transform-origin: left bottom;
         }
 
+        /* ANIMAÇÕES */
         @keyframes orb-float {
             0% {
                 transform: translate(0, 0);
@@ -544,15 +533,13 @@
             }
         }
 
-        /* --- SLIDE 2 (CARDS FLUTUANTES) --- */
+        /* --- CSS UPDATE: SLIDE 2 (CARDS) --- */
         .quote-box {
             margin-top: 40px;
             padding: 30px;
             border-left: 4px solid var(--brand-green);
-            background: rgba(160, 226, 97, 0.1);
-            /* Fundo verde clarinho */
+            background: linear-gradient(90deg, rgba(160, 226, 97, 0.05) 0%, transparent 100%);
             position: relative;
-            border-radius: 0 10px 10px 0;
         }
 
         .quote-icon {
@@ -561,42 +548,61 @@
             left: 10px;
             font-size: 1.5rem;
             color: var(--brand-green);
-            opacity: 0.5;
+            opacity: 0.3;
+        }
+
+        .problem-visuals {
+            position: relative;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .map-grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle, black 40%, transparent 80%);
+            z-index: 0;
         }
 
         .problem-card {
             position: absolute;
             width: 320px;
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            /* Sombra elegante */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s;
             animation: float-card 6s ease-in-out infinite;
-            z-index: 5;
         }
 
         .problem-card:hover {
             border-color: var(--brand-green);
-            transform: translateY(-5px);
+            background: rgba(20, 20, 20, 0.8);
             z-index: 10;
         }
 
         .p-icon-box {
             min-width: 50px;
             height: 50px;
-            background: rgba(160, 226, 97, 0.15);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--brand-green-light);
-            /* Verde mais vivo no icone */
+            color: var(--brand-green);
             font-size: 1.4rem;
         }
 
@@ -604,14 +610,14 @@
             font-family: 'Alexandria';
             font-weight: 700;
             font-size: 0.9rem;
-            color: var(--brand-dark);
+            color: #fff;
             margin-bottom: 5px;
             letter-spacing: 1px;
         }
 
         .p-desc {
             font-size: 0.85rem;
-            color: #777;
+            color: #aaa;
             line-height: 1.3;
         }
 
@@ -646,159 +652,7 @@
             }
         }
 
-        /* --- SLIDE 4 (MONÓLITO WHITE TECH) --- */
-        .tech-grid-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-image:
-                linear-gradient(rgba(160, 226, 97, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(160, 226, 97, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 0;
-            mask-image: radial-gradient(circle at 70% 50%, black 20%, transparent 70%);
-        }
-
-        .badge-tech {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            color: #666;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .hero-headline {
-            font-family: 'Alexandria';
-            font-weight: 800;
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin: 0;
-            color: var(--brand-dark);
-        }
-
-        .outline-text {
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
-            /* Outline cinza */
-        }
-
-        /* Monólito Branco */
-        .monolith-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .monolith {
-            width: 340px;
-            background: #fff;
-            /* Branco Puro */
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-top: 4px solid var(--brand-green);
-            border-radius: 20px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
-            /* Sombra profunda */
-            transition: transform 0.4s ease;
-        }
-
-        .monolith:hover {
-            transform: translateY(-10px);
-        }
-
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--brand-green), transparent);
-            opacity: 0.5;
-            box-shadow: 0 0 10px var(--brand-green);
-            animation: scan 4s ease-in-out infinite;
-        }
-
-        .mono-big-num {
-            font-family: 'Alexandria';
-            font-weight: 700;
-            font-size: 3.5rem;
-            color: var(--brand-dark);
-            line-height: 1;
-        }
-
-        .mono-icon {
-            font-size: 2.5rem;
-            color: var(--brand-dark);
-            margin-bottom: 10px;
-        }
-
-        .mono-label {
-            font-size: 0.75rem;
-            color: #999;
-            letter-spacing: 2px;
-            margin-top: 5px;
-        }
-
-        .mono-divider {
-            width: 40px;
-            height: 1px;
-            background: rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-        }
-
-        .mono-footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.7rem;
-            color: #999;
-            letter-spacing: 2px;
-        }
-
-        .monolith-glow {
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120%;
-            height: 80%;
-            background: radial-gradient(circle, rgba(160, 226, 97, 0.3) 0%, transparent 60%);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        @keyframes scan {
-            0% {
-                top: -10%;
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                top: 110%;
-                opacity: 0;
-            }
-        }
-
-        /* --- SLIDE 10 (REACTOR - Clean Version) --- */
+        /* --- CSS UPDATE: SLIDE 10 (REACTOR) --- */
         .reactor-ring {
             width: 220px;
             height: 220px;
@@ -809,8 +663,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 0 30px rgba(160, 226, 97, 0.1);
             animation: breathe 4s infinite ease-in-out;
         }
 
@@ -830,8 +683,7 @@
 
         .reactor-value {
             font-size: 7rem;
-            color: var(--brand-dark);
-            text-shadow: none;
+            text-shadow: 0 0 20px rgba(160, 226, 97, 0.4);
         }
 
         .investment-grid {
@@ -841,25 +693,24 @@
         }
 
         .inv-item {
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 15px;
             display: flex;
             align-items: center;
             gap: 15px;
             transition: transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
         }
 
         .inv-item:hover {
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-2px);
-            border-color: var(--brand-green);
         }
 
         .inv-icon {
             font-size: 1.5rem;
-            color: #999;
+            color: #888;
         }
 
         .inv-title {
@@ -868,19 +719,18 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             margin-bottom: 4px;
-            color: var(--brand-dark);
         }
 
         .inv-desc {
             font-size: 0.75rem;
-            color: #777;
+            color: #aaa;
             line-height: 1.3;
         }
 
         .item-gold {
             grid-column: span 2;
-            background: linear-gradient(90deg, rgba(192, 160, 98, 0.05) 0%, #fff 100%);
-            border-color: rgba(192, 160, 98, 0.3);
+            background: linear-gradient(90deg, rgba(192, 160, 98, 0.1) 0%, transparent 100%);
+            border-color: var(--brand-gold);
             position: relative;
             overflow: hidden;
         }
@@ -911,11 +761,11 @@
 
             0%,
             100% {
-                box-shadow: 0 10px 30px rgba(160, 226, 97, 0.1);
+                box-shadow: 0 0 30px rgba(160, 226, 97, 0.1);
             }
 
             50% {
-                box-shadow: 0 10px 50px rgba(160, 226, 97, 0.3);
+                box-shadow: 0 0 50px rgba(160, 226, 97, 0.3);
             }
         }
 
@@ -928,42 +778,6 @@
 
             50% {
                 opacity: 0.4;
-            }
-        }
-
-        @keyframes pulse-aura {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.6;
-            }
-
-            100% {
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 0.9;
-            }
-        }
-
-        @keyframes float-icon {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes float-icon-diag {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(-15px, -15px);
             }
         }
     </style>
@@ -980,20 +794,27 @@
         </svg>
     </div>
 
+    <!-- HEADER FIXO -->
     <header class="fixed-header">
         <img src="logoname.png" alt="Just Go Market" class="logo-img-fixed">
-    </header>    <div class="progress-bar" id="progressBar"></div>
+    </header>
+
+    <div class="progress-bar" id="progressBar"></div>
 
     <div class="deck-container">
 
+        <!-- SLIDE 1: CAPA -->
         <div class="slide active">
             <div class="slide-counter">01 / 15</div>
 
+            <!-- 1. CAMADA ATMOSFÉRICA (Fundo Vivo) -->
             <div class="atmosphere-bg">
                 <div class="orb orb-green"></div>
                 <div class="orb orb-gold"></div>
+                <div class="noise-overlay"></div>
             </div>
 
+            <!-- 2. ELEMENTOS TECH DECORATIVOS (HUD Minimalista) -->
             <div class="tech-lines">
                 <div class="line-vertical"></div>
                 <div class="corner-marker top-left"></div>
@@ -1001,30 +822,39 @@
                 <div class="scroll-hint">SCROLL TO EXPLORE</div>
             </div>
 
+            <!-- 3. CONTEÚDO HERO -->
             <div class="hero-wrapper">
+
+                <!-- Logo Flutuante (A "Jóia") -->
                 <div class="hero-logo-box animate-up delay-1">
+                    <!-- SUBSTITUA PELO SEU PNG -->
                     <img src="logoname.png" alt="Logo Just Go Market" class="hero-logo-img">
                 </div>
 
+                <!-- Título Tipográfico (Kinetic) -->
                 <div class="hero-text-group">
                     <h2 class="sub-headline animate-up delay-2">O LUXO DO</h2>
                     <h1 class="main-headline animate-up delay-3">IMEDIATO<span class="dot">.</span></h1>
                 </div>
 
+                <!-- Texto de Apoio e Separador -->
                 <div class="hero-footer animate-up delay-4">
                     <div class="separator-line"></div>
                     <p class="hero-description">
                         CONVENIÊNCIA AUTÔNOMA <br>
-                        <span style="color: #888;">INTEGRADA AO SEU ESTILO DE VIDA.</span>
+                        <span style="color: #666;">INTEGRADA AO SEU ESTILO DE VIDA.</span>
                     </p>
                 </div>
+
             </div>
         </div>
 
+        <!-- SLIDE 2: CONTEXTO URBANO -->
         <div class="slide">
             <div class="slide-counter">02 / 15</div>
 
             <div class="grid-2">
+                <!-- LADO ESQUERDO: TEXTO E ARGUMENTO -->
                 <div style="padding-right: 40px;">
                     <div class="animate-up delay-1"
                         style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
@@ -1039,21 +869,25 @@
                         CRIA <span class="highlight-green">DISTÂNCIAS.</span>
                     </h2>
 
-                    <p class="animate-up delay-3">
+                    <p class="animate-up delay-3" style="font-size: 1.2rem; color: #ccc; margin-top: 30px;">
                         Sua casa deve ser seu refúgio, mas a cidade exige que você saia. O que deveria ser uma compra
                         simples de 5 minutos se torna uma jornada de trânsito, filas e tempo perdido.
                     </p>
 
                     <div class="animate-up delay-4 quote-box">
                         <i class="fa-solid fa-quote-left quote-icon"></i>
-                        <p style="font-size: 1.4rem; color: var(--brand-dark); font-weight: 600; margin: 0;">
+                        <p style="font-size: 1.4rem; color: #fff; font-weight: 600; margin: 0;">
                             A conveniência externa deixou de ser conveniente.
                         </p>
                     </div>
                 </div>
 
-                <div
-                    style="position: relative; height: 500px; display: flex; justify-content: center; align-items: center;">
+                <!-- LADO DIREITO: CARDS FLUTUANTES (OBSTÁCULOS) -->
+                <div class="problem-visuals">
+                    <!-- Background Decorativo de Mapa/Grid -->
+                    <div class="map-grid-bg"></div>
+
+                    <!-- Card 1: Trânsito -->
                     <div class="problem-card card-1 animate-up delay-2">
                         <div class="p-icon-box"><i class="fa-solid fa-car-side"></i></div>
                         <div>
@@ -1062,6 +896,7 @@
                         </div>
                     </div>
 
+                    <!-- Card 2: Tempo -->
                     <div class="problem-card card-2 animate-up delay-3">
                         <div class="p-icon-box"><i class="fa-solid fa-hourglass-half"></i></div>
                         <div>
@@ -1070,6 +905,7 @@
                         </div>
                     </div>
 
+                    <!-- Card 3: Distância -->
                     <div class="problem-card card-3 animate-up delay-4">
                         <div class="p-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                         <div>
@@ -1081,6 +917,7 @@
             </div>
         </div>
 
+        <!-- SLIDE 3: CUSTO INVISÍVEL -->
         <div class="slide">
             <div class="slide-counter">03 / 15</div>
             <h2 class="animate-up delay-1">O CUSTO REAL DA "SAIDINHA"</h2>
@@ -1090,26 +927,33 @@
                 <div class="glass-card animate-up delay-2">
                     <div class="big-number">40<span style="font-size: 2rem">min</span></div>
                     <h3 style="margin: 15px 0;">PERDIDOS</h3>
-                    <p>Tempo médio gasto em trânsito, estacionamento e filas para comprar poucos itens.</p>
+                    <p style="font-size: 1rem;">Tempo médio gasto em trânsito, estacionamento e filas para comprar
+                        poucos itens.</p>
                 </div>
                 <div class="glass-card animate-up delay-3">
                     <div class="big-number">R$15</div>
                     <h3 style="margin: 15px 0;">TAXAS</h3>
-                    <p>Custo médio de delivery. Em um mês, isso pode somar mais de R$ 200,00 só em frete.</p>
+                    <p style="font-size: 1rem;">Custo médio de delivery. Em um mês, isso pode somar mais de R$ 200,00 só
+                        em frete.</p>
                 </div>
                 <div class="glass-card animate-up delay-4">
-                    <div class="big-number"><i class="fa-solid fa-bolt" style="color:var(--brand-dark);"></i></div>
+                    <div class="big-number"><i class="fa-solid fa-bolt"></i></div>
                     <h3 style="margin: 15px 0;">STRESS</h3>
-                    <p>A interrupção do seu momento de descanso ou lazer em família.</p>
+                    <p style="font-size: 1rem;">A interrupção do seu momento de descanso ou lazer em família.</p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 4: A SOLUÇÃO -->
         <div class="slide">
             <div class="slide-counter">04 / 15</div>
+
+            <!-- ELEMENTOS DE FUNDO (TECH GRID) -->
             <div class="tech-grid-bg"></div>
 
             <div class="grid-2" style="align-items: center; gap: 60px;">
+
+                <!-- LADO ESQUERDO: A MENSAGEM (Editorial) -->
                 <div style="position: relative; z-index: 2;">
                     <div class="animate-up delay-1 badge-tech">
                         <i class="fa-solid fa-microchip"></i> SISTEMA BIO-TECH
@@ -1121,58 +965,256 @@
                         <span class="highlight-green">TÉRREO.</span>
                     </h2>
 
-                    <p class="animate-up delay-3" style="margin-top: 30px;">
-                        Transformamos espaços ociosos em um <strong style="color:var(--brand-dark);">Ecossistema de
+                    <p class="animate-up delay-3"
+                        style="font-size: 1.1rem; line-height: 1.8; color: #ccc; max-width: 500px; margin-top: 30px;">
+                        Transformamos espaços ociosos em um <strong style="color:#fff;">Ecossistema de
                             Conveniência</strong>. Tecnologia invisível que devolve o controle do seu tempo.
                     </p>
 
+                    <!-- Assinatura visual -->
                     <div class="animate-up delay-4"
                         style="margin-top: 40px; display: flex; align-items: center; gap: 15px; opacity: 0.6;">
-                        <div style="height: 1px; width: 50px; background: var(--brand-dark);"></div>
-                        <span
-                            style="font-family: 'Alexandria'; font-size: 0.8rem; letter-spacing: 2px; color: var(--brand-dark);">JUST
-                            GO MARKET</span>
+                        <div style="height: 1px; width: 50px; background: var(--brand-white);"></div>
+                        <span style="font-family: 'Alexandria'; font-size: 0.8rem; letter-spacing: 2px;">JUST GO
+                            MARKET</span>
                     </div>
                 </div>
 
+                <!-- LADO DIREITO: O MONÓLITO (Visual Principal) -->
                 <div class="monolith-container animate-up delay-3">
                     <div class="monolith">
+                        <!-- Efeito de Scanner -->
                         <div class="scan-line"></div>
-                        <div class="mono-header" style="display:flex; justify-content:space-between;">
-                            <div class="mono-dot"
-                                style="width:8px; height:8px; background:var(--brand-green); border-radius:50%;"></div>
-                            <div class="mono-status"
-                                style="font-size:0.65rem; color:var(--brand-green); letter-spacing:2px;">SYSTEM ACTIVE
-                            </div>
+
+                        <!-- Cabeçalho do Card -->
+                        <div class="mono-header">
+                            <div class="mono-dot"></div>
+                            <div class="mono-status">SYSTEM ACTIVE</div>
                         </div>
 
+                        <!-- Conteúdo do Card -->
                         <div class="mono-content">
-                            <div class="mono-item" style="text-align:center; padding:10px 0;">
+                            <div class="mono-item">
                                 <div class="mono-big-num">24<span style="font-size: 2rem;">h</span></div>
-                                <div class="mono-label">DISPONIBILIDADE</div>
+                                <div class="mono-label">DISPONIBILIDADE TOTAL</div>
                             </div>
+
                             <div class="mono-divider"></div>
-                            <div class="mono-item" style="text-align:center; padding:10px 0;">
+
+                            <div class="mono-item">
                                 <div class="mono-big-num">100<span style="font-size: 2rem;">%</span></div>
                                 <div class="mono-label">AUTONOMIA</div>
                             </div>
+
                             <div class="mono-divider"></div>
-                            <div class="mono-item" style="text-align:center; padding:10px 0;">
+
+                            <div class="mono-item">
                                 <div class="mono-icon"><i class="fa-solid fa-fingerprint"></i></div>
                                 <div class="mono-label">ACESSO BIOMÉTRICO</div>
                             </div>
                         </div>
 
+                        <!-- Rodapé do Card -->
                         <div class="mono-footer">
                             <i class="fa-solid fa-wifi"></i>
                             <span>CONNECTED</span>
                         </div>
                     </div>
+
+                    <!-- Sombra/Glow traseiro -->
                     <div class="monolith-glow"></div>
                 </div>
+
             </div>
         </div>
 
+        <style>
+            /* CSS ESPECÍFICO PARA O SLIDE 4 (MONÓLITO) */
+
+            /* 1. Fundo Tech */
+            .tech-grid-bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-image:
+                    linear-gradient(rgba(160, 226, 97, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(160, 226, 97, 0.03) 1px, transparent 1px);
+                background-size: 50px 50px;
+                z-index: 0;
+                mask-image: radial-gradient(circle at 70% 50%, black 20%, transparent 70%);
+            }
+
+            /* 2. Tipografia Editorial */
+            .badge-tech {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 16px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 20px;
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+                color: #aaa;
+                margin-bottom: 20px;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-headline {
+                font-family: 'Alexandria';
+                font-weight: 800;
+                font-size: 3.5rem;
+                line-height: 1.1;
+                margin: 0;
+            }
+
+            .outline-text {
+                color: transparent;
+                -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+                /* Texto vazado */
+            }
+
+            /* 3. O Monólito */
+            .monolith-container {
+                position: relative;
+                display: flex;
+                justify-content: center;
+            }
+
+            .monolith {
+                width: 340px;
+                background: rgba(10, 15, 10, 0.85);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-top: 1px solid rgba(160, 226, 97, 0.3);
+                /* Topo verde sutil */
+                border-radius: 20px;
+                padding: 40px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+                transition: transform 0.4s ease;
+            }
+
+            .monolith:hover {
+                transform: translateY(-10px);
+                border-color: rgba(160, 226, 97, 0.4);
+            }
+
+            /* Scan Line Animation */
+            .scan-line {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--brand-green), transparent);
+                opacity: 0.5;
+                box-shadow: 0 0 10px var(--brand-green);
+                animation: scan 4s ease-in-out infinite;
+            }
+
+            /* Conteúdo Interno do Monólito */
+            .mono-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+            }
+
+            .mono-dot {
+                width: 8px;
+                height: 8px;
+                background: var(--brand-green);
+                border-radius: 50%;
+                box-shadow: 0 0 8px var(--brand-green);
+                animation: blink 2s infinite;
+            }
+
+            .mono-status {
+                font-size: 0.65rem;
+                color: var(--brand-green);
+                letter-spacing: 2px;
+            }
+
+            .mono-item {
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .mono-big-num {
+                font-family: 'Alexandria';
+                font-weight: 700;
+                font-size: 3.5rem;
+                color: #fff;
+                line-height: 1;
+            }
+
+            .mono-icon {
+                font-size: 2.5rem;
+                color: #fff;
+                margin-bottom: 10px;
+            }
+
+            .mono-label {
+                font-size: 0.75rem;
+                color: #888;
+                letter-spacing: 2px;
+                margin-top: 5px;
+            }
+
+            .mono-divider {
+                width: 40px;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.1);
+                margin: 20px auto;
+            }
+
+            .mono-footer {
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                font-size: 0.7rem;
+                color: #555;
+                letter-spacing: 2px;
+            }
+
+            /* Efeitos de Fundo */
+            .monolith-glow {
+                position: absolute;
+                top: 10%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 120%;
+                height: 80%;
+                background: radial-gradient(circle, rgba(160, 226, 97, 0.15) 0%, transparent 60%);
+                z-index: -1;
+                pointer-events: none;
+            }
+
+            @keyframes scan {
+                0% {
+                    top: -10%;
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    top: 110%;
+                    opacity: 0;
+                }
+            }
+        </style>
+
+        <!-- SLIDE 5: CONCEITO BIO-TECH -->
         <div class="slide">
             <div class="slide-counter">05 / 15</div>
             <h2 class="animate-up delay-1">CONCEITO <span class="highlight-green">BIO-TECH</span> PREMIUM</h2>
@@ -1181,17 +1223,20 @@
                     <i class="fa-solid fa-leaf icon-large"></i>
                     <h3>BIO (HUMANIZAÇÃO)</h3>
                     <p>Ambientes projetados com elementos naturais, madeira e iluminação quente. Fugimos da estética
-                        fria. Um espaço de bem-estar.</p>
+                        fria de
+                        "vending machine". Um espaço de convivência e bem-estar.</p>
                 </div>
                 <div class="glass-card animate-up delay-3">
                     <i class="fa-solid fa-microchip icon-large"></i>
                     <h3>TECH (EFICIÊNCIA)</h3>
-                    <p>Por trás do design, tecnologia de ponta. Gestão de estoque inteligente e pagamentos sem fricção.
-                    </p>
+                    <p>Por trás do design, tecnologia de ponta. Gestão de estoque inteligente, controle de acesso
+                        biométrico
+                        e pagamentos sem fricção.</p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 6: PILARES -->
         <div class="slide">
             <div class="slide-counter">06 / 15</div>
             <h2 class="animate-up delay-1">PILARES DA EXPERIÊNCIA</h2>
@@ -1199,21 +1244,28 @@
                 <div class="glass-card animate-up delay-2">
                     <i class="fa-solid fa-clock icon-large"></i>
                     <h3>24 HORAS</h3>
-                    <p>A loja nunca fecha. Madrugada, feriado ou domingo. Sua despensa está sempre disponível.</p>
+                    <p style="font-size: 1rem;">A loja nunca fecha. Madrugada, feriado ou domingo. Sua despensa
+                        está sempre
+                        disponível.</p>
                 </div>
                 <div class="glass-card animate-up delay-3">
                     <i class="fa-solid fa-user-shield icon-large"></i>
                     <h3>PRIVACIDADE</h3>
-                    <p>Compre de pijama se quiser. Sem atendentes, sem julgamentos. Liberdade total.</p>
+                    <p style="font-size: 1rem;">Compre de pijama se quiser. Sem atendentes, sem julgamentos.
+                        Liberdade
+                        total.</p>
                 </div>
                 <div class="glass-card animate-up delay-4">
                     <i class="fa-solid fa-mobile-screen-button icon-large"></i>
                     <h3>AUTONOMIA</h3>
-                    <p>Você no controle. Escolha, escaneie e pague. Processo de compra em segundos.</p>
+                    <p style="font-size: 1rem;">Você no controle. Escolha, escaneie e pague. Processo de compra
+                        em segundos.
+                    </p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 7: MIX PRODUTOS -->
         <div class="slide">
             <div class="slide-counter">07 / 15</div>
             <h2 class="animate-up delay-1">CURADORIA <span class="highlight-gold">PREMIUM</span></h2>
@@ -1223,124 +1275,110 @@
                 <div class="glass-card animate-up delay-2" style="border-top: 4px solid var(--brand-gold);">
                     <i class="fa-solid fa-wine-glass icon-large icon-gold"></i>
                     <h3 class="highlight-gold">ADEGA & GOURMET</h3>
-                    <p>Vinhos selecionados, cervejas artesanais, queijos finos e chocolates importados.</p>
+                    <p style="font-size: 0.9rem;">Vinhos selecionados, cervejas artesanais, queijos finos,
+                        chocolates
+                        importados e massas. Para o jantar especial de última hora.</p>
                 </div>
                 <div class="glass-card animate-up delay-3" style="border-top: 4px solid var(--brand-gold);">
                     <i class="fa-solid fa-basket-shopping icon-large icon-gold"></i>
                     <h3 class="highlight-gold">EMPÓRIO DIA A DIA</h3>
-                    <p>Leite, pão, café, ovos, matinais e snacks. A reposição rápida da sua despensa.</p>
+                    <p style="font-size: 0.9rem;">Leite, pão, café, ovos, matinais e snacks. A reposição rápida
+                        da sua
+                        despensa sem sair de casa.</p>
                 </div>
                 <div class="glass-card animate-up delay-4" style="border-top: 4px solid var(--brand-gold);">
                     <i class="fa-solid fa-kit-medical icon-large icon-gold"></i>
                     <h3 class="highlight-gold">S.O.S. EMERGÊNCIA</h3>
-                    <p>Gelo, carvão, higiene pessoal e limpeza. A salvação quando você mais precisa.</p>
+                    <p style="font-size: 0.9rem;">Gelo, carvão, itens de higiene pessoal e limpeza. A salvação
+                        quando você
+                        mais precisa.</p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 8: TECNOLOGIA -->
         <div class="slide">
             <div class="slide-counter">08 / 15</div>
-            <div class="tech-grid-bg"></div>
-
-            <div class="grid-2" style="align-items: center; gap: 60px;">
+            <div class="grid-2">
                 <div>
-                    <h2 class="animate-up delay-1" style="font-size: 3rem; line-height: 1.1; margin-bottom: 20px;">
-                        TECNOLOGIA <br>
-                        <span class="highlight-green">INVISÍVEL.</span>
-                    </h2>
-                    <p class="animate-up delay-2" style="font-size: 1.1rem; color: var(--brand-grey); margin-bottom: 40px; max-width: 450px;">
-                        A complexidade fica nos bastidores. Para você, uma experiência de compra <strong style="color:var(--brand-dark);">fluida, sem atritos e instantânea</strong>.
-                    </p>
+                    <h2 class="animate-up delay-1">TECNOLOGIA INVISÍVEL</h2>
+                    <p class="animate-up delay-2">O complexo fica nos bastidores. Para o usuário, tudo é
+                        simples.</p>
 
-                    <div class="glass-card animate-up delay-3" style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 25px; padding: 25px;">
-                        <div style="background: rgba(160, 226, 97, 0.15); min-width: 60px; height: 60px; border-radius: 12px; display: flex; justify-content: center; align-items: center;">
-                            <i class="fa-solid fa-qrcode" style="font-size: 1.8rem; color: var(--brand-green);"></i>
-                        </div>
-                        <div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.2rem; color: var(--brand-dark);">SCAN & GO INSTANTÂNEO</h3>
-                            <p style="font-size: 0.95rem; margin: 0; line-height: 1.5;">Aponte a câmera do seu celular ou use o leitor do totem. A identificação do produto é imediata.</p>
-                        </div>
+                    <div class="glass-card animate-up delay-3" style="margin-top: 20px;">
+                        <h3><i class="fa-solid fa-qrcode check-green"></i> SCAN & GO</h3>
+                        <p style="font-size: 1rem; margin-top: 10px;">Basta apontar a câmera do celular ou usar
+                            o leitor de
+                            código de barras no totem. A identificação do produto é instantânea.</p>
                     </div>
 
-                    <div class="glass-card animate-up delay-4" style="display: flex; gap: 20px; align-items: flex-start; padding: 25px;">
-                        <div style="background: rgba(192, 160, 98, 0.15); min-width: 60px; height: 60px; border-radius: 12px; display: flex; justify-content: center; align-items: center;">
-                            <i class="fa-solid fa-credit-card" style="font-size: 1.8rem; color: var(--brand-gold);"></i>
-                        </div>
-                        <div>
-                            <h3 style="margin-bottom: 8px; font-size: 1.2rem; color: var(--brand-dark);">PAGAMENTO SEM FILAS</h3>
-                            <p style="font-size: 0.95rem; margin: 0; line-height: 1.5;">Pix, Crédito ou Débito. Finalize sua compra diretamente no app ou no totem com total segurança.</p>
-                        </div>
+                    <div class="glass-card animate-up delay-4" style="margin-top: 20px;">
+                        <h3><i class="fa-solid fa-credit-card check-green"></i> PAGAMENTO FLUIDO</h3>
+                        <p style="font-size: 1rem; margin-top: 10px;">Aceitamos Pix, Crédito e Débito
+                            diretamente no totem
+                            ou via App. Sem filas no caixa.</p>
                     </div>
                 </div>
-
-                <div class="animate-up delay-3" style="position: relative; display: flex; justify-content: center; align-items: center; height: 100%;">
-                    <div style="position: relative; z-index: 2; width: 320px; height: 640px; background: #fff; border-radius: 45px; border: 6px solid #f5f5f5; box-shadow: 0 30px 70px rgba(0,0,0,0.15); overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, #fafafa, #ffffff);"></div>
-                        
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 80%;">
-                            <img src="image_1.png" alt="G Icon" style="width: 70px; opacity: 0.9; margin-bottom: 25px; filter: drop-shadow(0 5px 10px rgba(160, 226, 97, 0.2));">
-                            <div style="font-family: 'Alexandria'; font-weight: 700; font-size: 1.4rem; color: var(--brand-dark); margin-bottom: 10px;">Pagamento Aprovado</div>
-                            <div style="font-size: 1rem; color: var(--brand-green); font-weight: 600;">R$ 45,90</div>
-                        </div>
-                        <div style="position: absolute; top: 20px; left: 0; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; font-size: 0.8rem; color: #999;">
-                            <span>9:41</span>
-                            <span><i class="fa-solid fa-wifi"></i> <i class="fa-solid fa-battery-full"></i></span>
-                        </div>
-                    </div>
-
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 140%; height: 140%; pointer-events: none; z-index: 1;">
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(160, 226, 97, 0.15) 0%, rgba(192, 160, 98, 0.05) 50%, transparent 70%); filter: blur(30px); animation: pulse-aura 5s infinite alternate;"></div>
-                        
-                        <div style="position: absolute; top: 50%; left: 50%; width: 450px; height: 450px; border-radius: 50%; border: 1px solid rgba(160, 226, 97, 0.2); transform: translate(-50%, -50%) rotateX(60deg); animation: spin-slow 25s infinite linear;"></div>
-                        <div style="position: absolute; top: 50%; left: 50%; width: 400px; height: 400px; border-radius: 50%; border: 1px solid rgba(192, 160, 98, 0.2); transform: translate(-50%, -50%) rotateY(60deg); animation: spin-slow 30s infinite linear reverse;"></div>
-                        
-                        <i class="fa-solid fa-fingerprint" style="position: absolute; top: 25%; left: 25%; font-size: 2.5rem; color: var(--brand-green); opacity: 0.4; animation: float-icon-diag 4s infinite ease-in-out;"></i>
-                        <i class="fa-brands fa-nfc-symbol" style="position: absolute; bottom: 30%; right: 25%; font-size: 2.5rem; color: var(--brand-gold); opacity: 0.4; animation: float-icon-diag 5s infinite ease-in-out reverse;"></i>
-                        <i class="fa-solid fa-cloud-arrow-up" style="position: absolute; top: 35%; right: 15%; font-size: 2rem; color: var(--brand-green); opacity: 0.3; animation: float-icon 3.5s infinite ease-in-out;"></i>
-                    </div>
+                <div class="animate-up delay-4" style="display: flex; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-mobile-screen"
+                        style="font-size: 12rem; color: #333; border: 4px solid var(--brand-green); border-radius: 20px; padding: 20px;"></i>
                 </div>
             </div>
         </div>
-
-
+        <!-- SLIDE 9: SEGURANÇA -->
         <div class="slide">
             <div class="slide-counter">09 / 15</div>
             <h2 class="animate-up delay-1">SEGURANÇA TOTAL</h2>
+            <p class="animate-up delay-1">Uma preocupação central para qualquer condomínio.</p>
+
             <div class="grid-2">
                 <div class="glass-card animate-up delay-2">
                     <i class="fa-solid fa-id-card-clip icon-large"></i>
                     <h3>CONTROLE DE ACESSO</h3>
-                    <p>A porta só abre mediante identificação positiva (Biometria Facial ou App) de moradores
-                        cadastrados.</p>
+                    <p>A loja permanece trancada. A porta só abre mediante identificação positiva (Biometria
+                        Facial ou App)
+                        de moradores previamente cadastrados na base do condomínio.</p>
                 </div>
                 <div class="glass-card animate-up delay-3">
                     <i class="fa-solid fa-video icon-large"></i>
                     <h3>MONITORAMENTO 24H</h3>
-                    <p>Câmeras de alta definição conectadas à central de segurança. Detecção de anomalias em tempo real.
-                    </p>
+                    <p>Câmeras de alta definição cobrem 100% da loja, conectadas à nossa central de segurança.
+                        Qualquer
+                        anomalia é detectada em tempo real.</p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 10: MODELO DE NEGÓCIO -->
         <div class="slide">
             <div class="slide-counter">10 / 15</div>
 
             <div class="grid-2" style="align-items: center;">
+
                 <div style="text-align: center; position: relative;">
+                    <div
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(160, 226, 97, 0.2) 0%, transparent 70%); z-index: -1;">
+                    </div>
+
                     <div class="reactor-ring">
                         <span class="big-number reactor-value">0</span>
                     </div>
+
                     <h3 class="animate-up delay-2" style="margin-top: 30px; letter-spacing: 2px; font-size: 1.2rem;">
-                        CUSTO PARA O CONDOMÍNIO</h3>
-                    <p class="animate-up delay-3" style="font-size: 0.9rem; margin-top: 10px;">(Zero Opex. Zero Capex.)
-                    </p>
+                        CUSTO
+                        PARA O CONDOMÍNIO</h3>
+                    <p class="animate-up delay-3" style="font-size: 0.9rem; color: #888; margin-top: 10px;">
+                        (Zero Opex. Zero
+                        Capex.)</p>
                 </div>
 
                 <div style="padding-left: 40px;">
                     <h2 class="animate-up delay-1" style="font-size: 2.5rem; margin-bottom: 30px;">
                         VALORIZAÇÃO REAL.<br>RISCO <span class="highlight-green">ZERO</span>.
                     </h2>
-                    <p class="animate-up delay-2" style="margin-bottom: 25px;">Nós assumimos 100% dos custos de
+
+                    <p class="animate-up delay-2" style="margin-bottom: 25px; color: #ccc;">Nós assumimos 100%
+                        dos custos de
                         implantação e operação:</p>
 
                     <div class="investment-grid animate-up delay-3">
@@ -1351,6 +1389,7 @@
                                 <div class="inv-desc">Arquitetura e reforma civil</div>
                             </div>
                         </div>
+
                         <div class="inv-item">
                             <i class="fa-solid fa-couch inv-icon"></i>
                             <div>
@@ -1358,6 +1397,7 @@
                                 <div class="inv-desc">Marcenaria e Equipamentos</div>
                             </div>
                         </div>
+
                         <div class="inv-item">
                             <i class="fa-solid fa-layer-group inv-icon"></i>
                             <div>
@@ -1365,22 +1405,34 @@
                                 <div class="inv-desc">Mix completo de produtos</div>
                             </div>
                         </div>
+
                         <div class="inv-item item-gold">
                             <div class="pulse-dot"></div>
                             <i class="fa-solid fa-bolt inv-icon icon-gold"></i>
                             <div>
                                 <div class="inv-title highlight-gold">CONTA DE LUZ</div>
-                                <div class="inv-desc" style="color: #888;">100% paga pela JGM (Medidor Exclusivo)</div>
+                                <div class="inv-desc" style="color: #fff;">100% paga pela JGM (Medidor
+                                    Exclusivo)</div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="animate-up delay-4"
+                        style="margin-top: 25px; display: flex; align-items: center; gap: 15px; opacity: 0.7;">
+                        <i class="fa-solid fa-hand-holding-dollar" style="color: var(--brand-green);"></i>
+                        <span style="font-size: 0.9rem;">O condomínio entra apenas com o espaço físico.</span>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 11: RESPONSABILIDADES -->
         <div class="slide">
             <div class="slide-counter">11 / 15</div>
             <h2 class="animate-up delay-1">MATRIZ DE RESPONSABILIDADE</h2>
+            <p class="animate-up delay-1">Tranquilidade para o síndico: nós cuidamos da operação e dos custos.
+            </p>
+
             <div class="glass-card animate-up delay-2" style="margin-top: 30px; padding: 40px;">
                 <div class="matrix-row">
                     <span class="matrix-label">Limpeza da Loja</span>
@@ -1398,13 +1450,18 @@
                     <span class="matrix-label">Energia Elétrica</span>
                     <span class="highlight-green">JUST GO MARKET</span>
                 </div>
+                <div class="matrix-row">
+                    <span class="matrix-label">Atendimento ao Cliente (SAC)</span>
+                    <span class="highlight-green">JUST GO MARKET</span>
+                </div>
                 <div class="matrix-row" style="border-bottom: none;">
                     <span class="matrix-label">Ceder Espaço</span>
-                    <span style="color: #999;">CONDOMÍNIO</span>
+                    <span style="color: #ccc;">CONDOMÍNIO</span>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 12: VALORIZAÇÃO PATRIMONIAL (NOVO) -->
         <div class="slide">
             <div class="slide-counter">12 / 15</div>
             <h2 class="animate-up delay-1">ASSET MANAGEMENT</h2>
@@ -1414,15 +1471,19 @@
                 <div>
                     <div class="glass-card animate-up delay-2"
                         style="margin-bottom: 20px; border-left: 4px solid var(--brand-gold);">
-                        <h3 class="highlight-gold"><i class="fa-solid fa-chart-line"></i> LIQUIDEZ IMOBILIÁRIA</h3>
-                        <p style="margin-top: 10px;">Imóveis em condomínios com conveniência autônoma têm maior procura
-                            e velocidade de locação/venda.</p>
+                        <h3 class="highlight-gold"><i class="fa-solid fa-chart-line"></i> LIQUIDEZ IMOBILIÁRIA
+                        </h3>
+                        <p style="margin-top: 10px;">Imóveis em condomínios com conveniência autônoma têm maior
+                            procura e
+                            velocidade de locação/venda. É um "must-have" para o novo morador.</p>
                     </div>
 
                     <div class="glass-card animate-up delay-3" style="border-left: 4px solid var(--brand-green);">
-                        <h3 class="highlight-green"><i class="fa-solid fa-trophy"></i> DIFERENCIAL COMPETITIVO</h3>
+                        <h3 class="highlight-green"><i class="fa-solid fa-trophy"></i> DIFERENCIAL COMPETITIVO
+                        </h3>
                         <p style="margin-top: 10px;">Destaque seu condomínio frente aos vizinhos. Em um mercado
-                            saturado, serviços exclusivos definem a escolha.</p>
+                            saturado,
+                            serviços exclusivos definem a escolha.</p>
                     </div>
                 </div>
 
@@ -1433,7 +1494,8 @@
                             <i class="fa-solid fa-check-circle check-green"></i> Modernização da Área Comum
                         </li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fa-solid fa-check-circle check-green"></i> Serviço 24h sem Custo Trabalhista
+                            <i class="fa-solid fa-check-circle check-green"></i> Serviço 24h sem Custo
+                            Trabalhista
                         </li>
                         <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                             <i class="fa-solid fa-check-circle check-green"></i> Tecnologia Embarcada
@@ -1446,94 +1508,112 @@
             </div>
         </div>
 
+        <!-- SLIDE 13: PERFIL -->
         <div class="slide">
             <div class="slide-counter">13 / 15</div>
             <h2 class="animate-up delay-1">PARA QUEM É?</h2>
             <div class="grid-3">
                 <div class="glass-card animate-up delay-2">
                     <h3 style="color: var(--brand-green);">FAMÍLIAS</h3>
-                    <p style="margin-top: 10px;">Que precisam repor o leite da manhã ou o lanche da escola sem pegar o
-                        carro.</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Que precisam repor o leite da manhã ou o
+                        lanche da
+                        escola sem pegar o carro.</p>
                 </div>
                 <div class="glass-card animate-up delay-3">
                     <h3 style="color: var(--brand-green);">JOVENS/SOLTEIROS</h3>
-                    <p style="margin-top: 10px;">Que valorizam tempo, tecnologia e snacks para a madrugada.</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Que valorizam tempo, tecnologia e snacks
+                        para a
+                        madrugada.</p>
                 </div>
                 <div class="glass-card animate-up delay-4">
                     <h3 style="color: var(--brand-green);">HOME OFFICE</h3>
-                    <p style="margin-top: 10px;">O "coffee break" profissional a um elevador de distância.</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">O "coffee break" profissional a um
+                        elevador
+                        de
+                        distância.</p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 14: IMPLANTAÇÃO -->
         <div class="slide">
             <div class="slide-counter">14 / 15</div>
             <h2 class="animate-up delay-1">PASSO A PASSO</h2>
+            <p class="animate-up delay-1">O processo é simples e transparente.</p>
+
             <div style="margin-top: 40px;">
                 <div class="animate-up delay-2"
                     style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
                     <div
-                        style="background: var(--brand-green); color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 5px 15px rgba(160,226,97,0.4);">
+                        style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                         1</div>
-                    <p style="margin: 0; color: var(--brand-dark);">Visita Técnica e Estudo de Viabilidade (Gratuito).
-                    </p>
+                    <p style="margin: 0; color: #fff;">Visita Técnica e Estudo de Viabilidade
+                        (Gratuito).</p>
                 </div>
                 <div class="animate-up delay-3"
                     style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
                     <div
-                        style="background: var(--brand-green); color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 5px 15px rgba(160,226,97,0.4);">
+                        style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                         2</div>
-                    <p style="margin: 0; color: var(--brand-dark);">Aprovação do Projeto em Assembleia.</p>
+                    <p style="margin: 0; color: #fff;">Aprovação do Projeto em Assembleia.</p>
                 </div>
                 <div class="animate-up delay-4"
                     style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
                     <div
-                        style="background: var(--brand-green); color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 5px 15px rgba(160,226,97,0.4);">
+                        style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                         3</div>
-                    <p style="margin: 0; color: var(--brand-dark);">Assinatura do Contrato (Cessão de Espaço).</p>
+                    <p style="margin: 0; color: #fff;">Assinatura do Contrato (Cessão de Espaço).</p>
                 </div>
                 <div class="animate-up delay-4"
                     style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
                     <div
-                        style="background: var(--brand-green); color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 5px 15px rgba(160,226,97,0.4);">
+                        style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                         4</div>
-                    <p style="margin: 0; color: var(--brand-dark);">Obras e Instalação (Prazo médio: 30 a 45 dias).</p>
+                    <p style="margin: 0; color: #fff;">Obras e Instalação (Prazo médio: 30 a 45 dias).
+                    </p>
                 </div>
                 <div class="animate-up delay-4"
                     style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
                     <div
-                        style="background: var(--brand-green); color: #fff; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 5px 15px rgba(160,226,97,0.4);">
+                        style="background: var(--brand-green); color: #000; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                         5</div>
-                    <p style="margin: 0; color: var(--brand-dark);">Inauguração.</p>
+                    <p style="margin: 0; color: #fff;">Inauguração.</p>
                 </div>
             </div>
         </div>
 
+        <!-- SLIDE 15: CTA FINAL -->
         <div class="slide">
             <div class="slide-counter">15 / 15</div>
             <div style="text-align: center;">
                 <div class="logo-comp-fixed animate-up delay-1"
                     style="justify-content: center; margin-bottom: 20px; position: static; pointer-events: none;">
+                    <!-- Logo centralizada para o final -->
                     <img src="logoname.png" alt="Just Go Market" class="logo-img-fixed" style="height: 80px;">
                 </div>
 
                 <h1 class="animate-up delay-2">VAMOS ELEVAR O PADRÃO<br>DO SEU CONDOMÍNIO?</h1>
 
                 <div class="animate-up delay-3"
-                    style="margin-top: 40px; display: inline-block; padding: 40px; border: 1px solid rgba(0,0,0,0.1); border-radius: 12px; background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
+                    style="margin-top: 40px; display: inline-block; padding: 40px; border: 1px solid var(--brand-white); border-radius: 12px; background: rgba(255,255,255,0.05);">
+                    <!-- Placeholder QR Code Design -->
                     <div
-                        style="width: 200px; height: 200px; background: #f0f0f0; margin: 0 auto; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
-                        <i class="fa-solid fa-qrcode" style="font-size: 8rem; color: #1a1a1a;"></i>
+                        style="width: 200px; height: 200px; background: #fff; margin: 0 auto; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
+                        <i class="fa-solid fa-qrcode" style="font-size: 8rem; color: #000;"></i>
                     </div>
-                    <p style="margin-top: 20px; font-size: 1.2rem; color: var(--brand-dark);">Agende agora uma visita
+
+                    <p style="margin-top: 20px; font-size: 1.2rem; color: #fff;">Agende agora uma visita
                         técnica.</p>
+
                     <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 15px; font-size: 1.3rem;">
-                        <div style="color: var(--brand-grey);"><i class="fa-brands fa-whatsapp"
-                                style="color: var(--brand-green);"></i> (61) 99991-8007</div>
-                        <div style="color: var(--brand-grey);"><i class="fa-solid fa-envelope"
-                                style="color: var(--brand-green);"></i> contato@justgomarket.com.br</div>
-                        <div style="color: var(--brand-grey);"><i class="fa-solid fa-globe"
-                                style="color: var(--brand-green);"></i> www.justgomarket.com.br</div>
+                        <div><i class="fa-brands fa-whatsapp" style="color: var(--brand-green);"></i>
+                            (61)
+                            99991-8007</div>
+                        <div><i class="fa-solid fa-envelope" style="color: var(--brand-green);"></i>
+                            contato@justgomarket.com.br</div>
+                        <div><i class="fa-solid fa-globe" style="color: var(--brand-green);"></i>
+                            www.justgomarket.com.br
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1541,6 +1621,7 @@
 
     </div>
 
+    <!-- CONTROLES -->
     <div class="nav-controls">
         <button class="nav-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
         <button class="nav-btn" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
@@ -1588,15 +1669,16 @@
             }
         }
 
+        // Navegação por Teclado
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
         });
 
+        // Inicialização
         updateSlide();
     </script>
 
 </body>
 
 </html>
-
