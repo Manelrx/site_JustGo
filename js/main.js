@@ -32,6 +32,22 @@ gsap.fromTo('.hero-stagger',
     { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: 'power3.out', delay: 0.2 }
 );
 
+// Bento Grid Stagger Animation
+gsap.fromTo('.bento-grid .bento-card',
+    { y: 50, opacity: 0 },
+    {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+            trigger: '.bento-grid',
+            start: 'top 80%'
+        }
+    }
+);
+
 // Accordion Logic
 function toggleAccordion(header) {
     const item = header.parentElement;
