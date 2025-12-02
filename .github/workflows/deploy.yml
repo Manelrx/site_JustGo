@@ -1,0 +1,36 @@
+name: Deploy Site to HostGator
+
+on:
+  push:
+    branches:
+      - main  # Executa apenas quando subir para a main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # A pasta onde estão seus arquivos no GitHub. 
+        # Se o index.html estiver na raiz do repositório, deixe "./"
+        local-dir: ./ 
+        
+        # A pasta de destino na HostGator.
+        # Geralmente é public_html/ para o domínio principal.
+        server-dir: ./
+        
+        # Arquivos que NÃO devem subir (segurança e limpeza)
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          README.md
+          .github/**
