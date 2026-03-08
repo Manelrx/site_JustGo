@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppFloat from '@components/WhatsAppFloat.astro';
+import CTASticky from '@components/CTASticky.astro';
+import FAQ from '@components/FAQ.astro';
+import { localBusinessSchema, faqPageSchema, serviceSchema, breadcrumbSchema } from '@lib/schema';
+
+export async function getStaticPaths() {
+  const cidades = await getCollection('cidades');
+  return cidades.map((cidade) => ({
+    params: { cidade: cidade.data.slug },
+    props: { cidade: cidade.data },
+  }));
+}
+
+const { cidade } = Astro.props;
+
+const schemas = [
+  localBusinessSchema(cidade.name, cidade.coords),
+  serviceSchema(),
+  faqPageSchema(cidade.faqs),
+  breadcrumbSchema([
+    { name: 'Home', url: 'https://www.justgomarket.com.br/' },
+    { name: cidade.name, url: `https://www.justgomarket.com.br/${cidade.slug}/` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={cidade.metaTitle}
+  description={cidade.metaDescription}
+  city={cidade.name}
+  schemas={schemas}
+>
+  <Header />
+
+  <main>
+    <section class="inner-hero">
+      <div class="container">
+        <span class="uppercase highlight" style="display: block; margin-bottom: 20px;">Mercado Autônomo em {cidade.name}</span>
+        <h1>{cidade.h1}</h1>
+        <p>{cidade.heroDescription}</p>
+      </div>
+    </section>
+
+    <section class="content-section light-section">
+      <div class="container">
+        <div class="content-wrapper">
+          <h2>Mercado Autônomo em {cidade.name}: Conveniência Premium no Seu Condomínio</h2>
+          {cidade.content.intro.split('\n\n').map((p: string) => <p>{p}</p>)}
+
+          <h2>Por Que um Mercado Autônomo em {cidade.name}?</h2>
+          {cidade.content.whyHere.split('\n\n').map((p: string) => <p set:html={p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />)}
+
+          <h2>Benefícios do Mercado Autônomo para Condomínios em {cidade.name}</h2>
+          {cidade.content.benefits.split('\n\n').map((p: string) => <p set:html={p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />)}
+
+          <h2>Como Funciona a Instalação em {cidade.name}</h2>
+          {cidade.content.howItWorks.split('\n\n').map((p: string) => <p set:html={p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />)}
+
+          <h2>Custos e Modelo de Negócio</h2>
+          {cidade.content.pricing.split('\n\n').map((p: string) => <p>{p}</p>)}
+
+          <h2>Bairros e Regiões Atendidas em {cidade.name}</h2>
+          {cidade.content.neighborhoods.split('\n\n').map((p: string) => <p set:html={p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/- (.*)/g, '• $1')} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-faq" style="padding-top: 60px;">
+      <div class="container">
+        <h2 class="text-center" style="margin-bottom: 40px;">Perguntas Frequentes sobre Mercado Autônomo em {cidade.name}</h2>
+        <FAQ items={cidade.faqs} id={`faq-${cidade.slug}`} />
+      </div>
+    </section>
+
+    <section class="section-contact" style="padding: 80px 0;">
+      <div class="container text-center">
+        <span class="uppercase highlight" style="display: block; margin-bottom: 20px;">Próximo passo</span>
+        <h2 style="color: var(--color-offwhite); margin-bottom: 20px;">{cidade.content.cta.split('.')[0]}.</h2>
+        <p style="max-width: 600px; margin: 0 auto 30px; color: rgba(255,255,255,0.8);">{cidade.content.cta}</p>
+        <a href="/#contato" class="btn btn-primary btn-glow">Solicitar Estudo Gratuito para {cidade.name}</a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+  <CTASticky />
+</BaseLayout>

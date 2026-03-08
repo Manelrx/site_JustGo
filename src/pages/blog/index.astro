@@ -1,0 +1,325 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { breadcrumbSchema } from '@lib/schema';
+
+// Fetch non-draft posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort by date descending
+const posts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', url: 'https://www.justgomarket.com.br/' },
+    { name: 'Blog', url: 'https://www.justgomarket.com.br/blog/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Blog — Mercado Autônomo para Condomínios"
+  description="Blog da Just Go Market. Artigos sobre mercado autônomo, conveniência em condomínios, tendências do mercado imobiliário e tecnologia para gestão condominial."
+  schemas={schemas}
+>
+  <Header currentPath="/blog" />
+
+  <main class="blog-index-main">
+    <section class="blog-index-hero">
+      <div class="container text-center">
+        <h1>Conteúdos Estratégicos para Síndicos</h1>
+        <p>Estudos, tendências e guias sobre mercado autônomo, conveniência em condomínios e tecnologia para gestão.</p>
+        
+        <button id="theme-toggle-btn" class="theme-toggle" aria-label="Alternar Tema Escuro/Claro">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span>Modo Leitura</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="blog-index-content">
+      <div class="container">
+        {posts.length === 0 ? (
+          <div class="empty-state">
+            <p>Em breve, publicaremos artigos sobre mercado autônomo e tecnologia imobiliária. Fique atento!</p>
+            <a href="/#contato" class="btn btn-primary">Fale Conosco</a>
+          </div>
+        ) : (
+          <div class="blog-grid">
+            {posts.map((post) => (
+              <article class="blog-card">
+                <div class="card-meta">
+                  <span class="card-tag">{post.data.tags[0]}</span>
+                  <span class="card-date">{post.data.pubDate.toLocaleDateString('pt-BR')}</span>
+                </div>
+                <h2><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h2>
+                <p class="card-excerpt">{post.data.description}</p>
+                <div class="card-footer">
+                  <a href={`/blog/${post.slug}/`} class="read-more">Ler artigo 📍</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+<style is:global>
+    /* Theme Variables */
+    :root {
+      --blog-bg: var(--color-black);
+      --blog-bg-hero: var(--color-black);
+      --blog-surface: rgba(255, 255, 255, 0.02);
+      --blog-border: rgba(255, 255, 255, 0.05);
+      --blog-text: rgba(255, 255, 255, 0.85);
+      --blog-text-muted: rgba(255, 255, 255, 0.6);
+      --blog-heading: var(--color-offwhite);
+      --blog-accent: var(--color-green);
+      --blog-accent-bg: rgba(160, 226, 97, 0.1);
+      --blog-link: var(--color-green);
+    }
+
+    [data-blog-theme="light"] {
+      --blog-bg: var(--color-offwhite);
+      --blog-bg-hero: var(--color-black);
+      --blog-surface: #ffffff;
+      --blog-border: rgba(1, 5, 2, 0.1);
+      --blog-text: rgba(1, 5, 2, 0.85);
+      --blog-text-muted: rgba(1, 5, 2, 0.6);
+      --blog-heading: var(--color-black);
+      --blog-accent: var(--color-black);
+      --blog-accent-bg: rgba(1, 5, 2, 0.05);
+      --blog-link: #2e8b57;
+    }
+
+    /* Hero Section */
+    .blog-index-hero {
+      background: var(--blog-bg-hero);
+      position: relative;
+      color: var(--color-offwhite);
+      padding: 140px 0 80px;
+      overflow: hidden;
+    }
+
+    .blog-index-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 10%, rgba(160, 226, 97, 0.15) 0%, rgba(1, 5, 2, 0) 60%);
+      pointer-events: none;
+    }
+
+    .blog-index-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .blog-index-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-family: var(--font-title);
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .blog-index-hero p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 25px;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .moon-icon { display: none; }
+    [data-blog-theme="light"] .sun-icon { display: none; }
+    [data-blog-theme="light"] .moon-icon { display: block; }
+
+    /* Content Area */
+    .blog-index-content {
+      padding: 80px 0 120px;
+      background-color: var(--blog-bg);
+      min-height: 50vh;
+      transition: background-color 0.3s ease;
+    }
+
+    .empty-state {
+      text-align: center;
+      max-width: 600px;
+      margin: 40px auto;
+      background: var(--blog-surface);
+      border: 1px solid var(--blog-border);
+      padding: 50px;
+      border-radius: 24px;
+      color: var(--blog-text);
+      transition: all 0.3s ease;
+    }
+
+    .empty-state p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: var(--blog-text-muted);
+    }
+
+    /* Grid and Cards */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 40px;
+    }
+
+    .blog-card {
+      background: var(--blog-surface);
+      border-radius: 24px;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--blog-border);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--blog-accent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--blog-accent);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .blog-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .card-meta .card-tag {
+      background: var(--blog-accent-bg);
+      color: var(--blog-accent);
+      padding: 6px 14px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.75rem;
+    }
+
+    .card-meta .card-date {
+      color: var(--blog-text-muted);
+    }
+
+    .blog-card h2 {
+      font-size: 1.5rem;
+      font-family: var(--font-title);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .blog-card h2 a {
+      color: var(--blog-heading);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .blog-card:hover h2 a {
+      color: var(--blog-accent);
+    }
+
+    .card-excerpt {
+      font-size: 1.05rem;
+      color: var(--blog-text-muted);
+      line-height: 1.7;
+      margin-bottom: 30px;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--blog-border);
+      padding-top: 25px;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      color: var(--blog-link);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      letter-spacing: 0.5px;
+    }
+
+    .read-more:hover {
+      opacity: 0.8;
+      transform: translateX(5px);
+    }
+  </style>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* Theme Toggle Logic */
+      const themeBtn = document.getElementById("theme-toggle-btn");
+      const htmlEl = document.documentElement;
+
+      const savedTheme = localStorage.getItem("blog-theme") || "dark";
+      htmlEl.setAttribute("data-blog-theme", savedTheme);
+
+      if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+          const current = htmlEl.getAttribute("data-blog-theme");
+          const next = current === "dark" ? "light" : "dark";
+          htmlEl.setAttribute("data-blog-theme", next);
+          localStorage.setItem("blog-theme", next);
+        });
+      }
+    });
+  </script>

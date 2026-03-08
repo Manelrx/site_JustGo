@@ -1,0 +1,83 @@
+---
+import SchemaOrg from '@components/SchemaOrg.astro';
+import Analytics from '@components/Analytics.astro';
+import Preloader from '@components/Preloader.astro';
+import { buildSEO, type SEOProps } from '@lib/seo';
+import { organizationSchema } from '@lib/schema';
+
+interface Props extends SEOProps {
+  schemas?: Record<string, unknown>[];
+  headerDark?: boolean;
+}
+
+const {
+  schemas = [],
+  headerDark = false,
+  ...seoProps
+} = Astro.props;
+
+const seo = buildSEO(seoProps, Astro.url.pathname);
+
+// Always include Organization schema globally
+const allSchemas = [organizationSchema(), ...schemas];
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Core -->
+  <title>{seo.title}</title>
+  <meta name="description" content={seo.description} />
+  <link rel="canonical" href={seo.canonical} />
+  {seo.noindex
+    ? <meta name="robots" content="noindex, nofollow" />
+    : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  }
+
+  <!-- OpenGraph -->
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content={seo.ogType} />
+  <meta property="og:title" content={seo.title} />
+  <meta property="og:description" content={seo.description} />
+  <meta property="og:url" content={seo.canonical} />
+  <meta property="og:image" content={seo.ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Just Go Market — Mercado Autônomo para Condomínios" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={seo.title} />
+  <meta name="twitter:description" content={seo.description} />
+  <meta name="twitter:image" content={seo.ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
+
+  <!-- Fonts (optimized) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700;800&family=Wix+Madefor+Display:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/src/styles/global.css" />
+
+  <!-- Schema.org -->
+  <SchemaOrg schemas={allSchemas} />
+
+  <!-- Analytics -->
+  <Analytics />
+</head>
+
+<body>
+  <Preloader />
+  <slot />
+</body>
+</html>

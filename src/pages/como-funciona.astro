@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppFloat from '@components/WhatsAppFloat.astro';
+import CTASticky from '@components/CTASticky.astro';
+import { breadcrumbSchema, serviceSchema } from '@lib/schema';
+
+const schemas = [
+  serviceSchema(),
+  breadcrumbSchema([
+    { name: 'Home', url: 'https://www.justgomarket.com.br/' },
+    { name: 'Como Funciona', url: 'https://www.justgomarket.com.br/como-funciona/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Como Funciona o Mercado Autônomo para Condomínios"
+  description="Entenda como funciona a instalação e operação do mercado autônomo Just Go Market em condomínios. Do projeto à operação 24h, tudo sem custo para o condomínio. Tecnologia Scan & Go em Brasília e DF."
+  schemas={schemas}
+>
+  <Header currentPath="/como-funciona" />
+
+  <main>
+    <section class="inner-hero">
+      <div class="container">
+        <span class="uppercase highlight" style="display: block; margin-bottom: 20px;">Guia Completo</span>
+        <h1>Como Funciona o Mercado Autônomo Just Go Market em Condomínios</h1>
+        <p>Da consultoria inicial à operação 24 horas: entenda cada etapa do processo de implantação do seu minimercado inteligente.</p>
+      </div>
+    </section>
+
+    <section class="content-section light-section">
+      <div class="container">
+        <div class="content-wrapper">
+          <h2>O Que É um Mercado Autônomo para Condomínios?</h2>
+          <p>Um mercado autônomo — também chamado de honest market, mini mercado inteligente ou loja de conveniência autônoma — é um espaço de compras sem funcionários fixos, instalado dentro de condomínios residenciais. Os moradores entram, escolhem os produtos, escaneiam e pagam diretamente no totem de autoatendimento. Tudo funciona 24 horas por dia, 7 dias por semana.</p>
+          <p>A Just Go Market leva este conceito a um novo patamar em Brasília e no Distrito Federal. Não somos um micro-market genérico: somos um empório com curadoria gourmet, adega inteligente e tecnologia Scan & Go, tudo com design premium que se integra harmoniosamente à arquitetura do seu condomínio.</p>
+
+          <h2>Como Funciona o Processo de Instalação</h2>
+          <p>O processo de implantação de um mercado autônomo Just Go Market em seu condomínio é simples e totalmente conduzido por nossa equipe. Veja as etapas:</p>
+
+          <h3>1. Consultoria e Estudo de Viabilidade</h3>
+          <p>Tudo começa com uma conversa. Nossa equipe comercial visita o condomínio, analisa o espaço disponível (mínimo 15m²), o perfil dos moradores e o potencial de uso. Em até 5 dias úteis, apresentamos um projeto personalizado com layout 3D, estimativa de mix de produtos e projeção de valorização para o empreendimento.</p>
+
+          <h3>2. Aprovação em Assembleia</h3>
+          <p>Auxiliamos o síndico na preparação da pauta e dos materiais para a assembleia condominial. Fornecemos uma apresentação completa com todos os detalhes do modelo, incluindo as cláusulas do contrato, para que os moradores possam votar com segurança. Nosso contrato padrão é de 36 meses.</p>
+
+          <h3>3. Projeto e Implantação</h3>
+          <p>Após a aprovação, nossa equipe de projetos desenvolve o layout final adaptado ao espaço do condomínio. A instalação é rápida — entre 15 e 30 dias — e inclui:</p>
+          <ul>
+            <li>Estrutura modular de alta qualidade (prateleiras, geladeiras, freezers)</li>
+            <li>Totem de autoatendimento com tecnologia Scan & Go</li>
+            <li>Sistema de câmeras de segurança 24h em alta definição</li>
+            <li>Geladeira com trava inteligente para bebidas alcoólicas</li>
+            <li>Medidor de energia individual para reembolso justo</li>
+            <li>Estoque inaugural com mais de 500 produtos selecionados</li>
+          </ul>
+          <p><strong>Custo para o condomínio: zero.</strong> Nós arcamos com 100% do investimento de implantação.</p>
+
+          <h3>4. Operação Diária</h3>
+          <p>A operação é 100% gerenciada pela Just Go Market. Isso significa:</p>
+          <ul>
+            <li><strong>Reposição periódica:</strong> nossa equipe visita a loja regularmente para repor o estoque e ajustar o mix de produtos com base no consumo real</li>
+            <li><strong>Limpeza e manutenção:</strong> cuidamos da higienização do espaço e da manutenção preventiva de todos os equipamentos</li>
+            <li><strong>Monitoramento 24h:</strong> câmeras de segurança com acesso remoto e alertas automáticos</li>
+            <li><strong>Suporte ao morador:</strong> canal exclusivo via WhatsApp para dúvidas, sugestões de produtos ou problemas com pagamento</li>
+          </ul>
+
+          <h2>Como o Morador Compra no Mercado Autônomo</h2>
+          <p>A experiência de compra é extremamente simples e rápida:</p>
+          <ol>
+            <li><strong>Acesse a loja:</strong> entrada livre (em áreas seguras) ou via App/QR Code (acesso controlado)</li>
+            <li><strong>Escolha seus produtos:</strong> navegue pelas prateleiras com mais de 500 opções — do básico ao gourmet</li>
+            <li><strong>Escaneie no totem:</strong> passe o código de barras de cada produto no leitor do totem de autoatendimento</li>
+            <li><strong>Pague e pronto:</strong> finalize com cartão de crédito ou débito. Todo o processo leva menos de 2 minutos</li>
+          </ol>
+
+          <h2>Tecnologia por Trás do Mercado Autônomo</h2>
+          <p>A Just Go Market utiliza um ecossistema tecnológico proprietário que garante segurança, controle de estoque e experiência de compra fluida:</p>
+          <ul>
+            <li><strong>Totem Scan & Go:</strong> leitor de código de barras de alta velocidade com tela touch para pagamento</li>
+            <li><strong>Sistema de inventário inteligente:</strong> controle em tempo real do estoque e alertas automáticos de reposição</li>
+            <li><strong>Câmeras de segurança HD:</strong> monitoramento 24h com armazenamento em nuvem e acesso remoto</li>
+            <li><strong>App do condomínio:</strong> gestão de acesso, verificação de maioridade para álcool e canal de sugestões</li>
+            <li><strong>Dashboard para o síndico:</strong> relatórios mensais de consumo, satisfação e funcionamento</li>
+          </ul>
+
+          <h2>O Mix de Produtos: Curadoria Gourmet + Essenciais</h2>
+          <p>Diferentemente de micro-markets genéricos, a Just Go Market trabalha com uma curadoria inteligente que equilibra itens de emergência do dia a dia com uma seleção premium. Nosso mix inclui:</p>
+          <ul>
+            <li><strong>Essenciais:</strong> leite, ovos, pão, manteiga, arroz, feijão, massas, molhos, temperos</li>
+            <li><strong>Higiene e limpeza:</strong> sabonete, shampoo, pasta de dente, papel higiênico, detergente</li>
+            <li><strong>Gourmet:</strong> chocolates importados, queijos finos, azeites premium, conservas artesanais</li>
+            <li><strong>Adega:</strong> vinhos selecionados, cervejas artesanais, destilados (com verificação de maioridade)</li>
+            <li><strong>Snacks e bebidas:</strong> refrigerantes, sucos, energéticos, salgadinhos, biscoitos</li>
+            <li><strong>Congelados:</strong> sorvetes, pratos prontos, pão de queijo, açaí</li>
+          </ul>
+          <p>O mix é constantemente ajustado com base nas preferências dos moradores de cada condomínio. Moradores podem solicitar produtos específicos pelo canal de sugestões via WhatsApp.</p>
+
+          <h2>Segurança e Confiança</h2>
+          <p>Sabemos que segurança é uma preocupação fundamental para síndicos e moradores. Por isso, investimos fortemente em múltiplas camadas de proteção:</p>
+          <ul>
+            <li><strong>Câmeras de segurança 24h:</strong> circuito interno de alta definição com armazenamento em nuvem</li>
+            <li><strong>Controle de acesso:</strong> possibilidade de restringir a entrada via aplicativo ou QR Code exclusivo para moradores</li>
+            <li><strong>Trava inteligente pour bebidas alcoólicas:</strong> geladeiras só abrem após verificação de maioridade</li>
+            <li><strong>Seguro contra danos e furtos:</strong> contratado e pago integralmente pela Just Go Market</li>
+            <li><strong>Equipe de incidentes:</strong> em caso de ocorrência, nossa equipe trata diretamente sem envolver a administração do condomínio</li>
+          </ul>
+
+          <div class="text-center" style="margin-top: 60px;">
+            <h2>Pronto para Levar o Mercado Autônomo para Seu Condomínio?</h2>
+            <p style="max-width: 600px; margin: 0 auto 30px;">Solicite um estudo de viabilidade gratuito e descubra como a Just Go Market pode transformar a conveniência no seu condomínio.</p>
+            <a href="/#contato" class="btn btn-primary btn-glow">Solicitar Projeto Gratuito</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+  <CTASticky />
+</BaseLayout>

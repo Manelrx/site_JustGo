@@ -1,0 +1,275 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppFloat from '@components/WhatsAppFloat.astro';
+import CTASticky from '@components/CTASticky.astro';
+import SocialProof from '@components/SocialProof.astro';
+import ContactForm from '@components/ContactForm.astro';
+import FAQ from '@components/FAQ.astro';
+import { serviceSchema, faqPageSchema, localBusinessSchema } from '@lib/schema';
+
+const syndicFaqs = [
+  { question: 'Quanto custa para o condomínio ter uma Just Go Market?', answer: 'Absolutamente nada. A Just Go Market opera no modelo de Custo Zero. Nós arcamos com 100% do investimento de implantação (estrutura, equipamentos, tecnologia) e com todos os custos operacionais (estoque, manutenção, sistemas). O condomínio cede apenas o espaço e um ponto de energia.' },
+  { question: 'Qual o tamanho de espaço necessário?', answer: 'Nossa estrutura modular é flexível. O modelo padrão ocupa cerca de 15m² a 18m². Precisamos apenas de um local com piso nivelado e acesso a um ponto de energia elétrica. Podemos instalar em áreas internas (hall, salão de jogos) ou externas (áreas de lazer, jardins), adaptando o projeto à arquitetura do seu condomínio.' },
+  { question: 'O condomínio tem alguma responsabilidade sobre a operação ou funcionários?', answer: 'Nenhuma. A gestão é 100% nossa. Não temos funcionários fixos no local; nossa equipe de reposição e limpeza visita a loja periodicamente. O condomínio não tem vínculo trabalhista nem responsabilidade sobre o estoque ou o atendimento.' },
+  { question: 'Como funciona a segurança e o controle de acesso?', answer: 'A segurança é prioridade. Nossa loja é monitorada 24h por um circuito interno de câmeras de alta definição. O acesso pode ser configurado de duas formas: Livre (ideal para áreas seguras e internas) ou Controlado (via aplicativo do condomínio ou QR Code exclusivo para moradores). Além disso, temos seguro próprio contra danos e furtos.' },
+  { question: 'E se houver furto ou vandalismo?', answer: 'O risco é nosso. Nossos sistemas de monitoramento e inteligência inibem a maioria das ocorrências. Caso algo aconteça, nossa equipe de segurança trata diretamente do incidente, sem envolver a administração do condomínio. O condomínio está isento de qualquer prejuízo financeiro.' },
+  { question: 'O consumo de energia é pago pelo condomínio?', answer: 'Não. Instalamos um medidor individual para a loja e reembolsamos o valor exato do consumo ao condomínio mensalmente, ou definimos uma taxa fixa de reembolso em contrato. A conta de energia do condomínio não aumenta.' },
+  { question: 'Qual o prazo de contrato?', answer: 'Nosso contrato padrão é de 36 meses. Esse período é necessário para amortizar o alto investimento inicial que fazemos na estrutura e tecnologia.' },
+];
+
+const residentFaqs = [
+  { question: 'Como eu faço para comprar?', answer: 'É muito simples: entre no mercado (acesso livre ou via App/QR Code), escolha e pegue os produtos, escaneie o código de barras no leitor do totem e pague com seu cartão. Pronto!' },
+  { question: 'Preciso baixar algum aplicativo?', answer: 'Para comprar, não! O pagamento é feito direto no totem com seu cartão. O aplicativo só é necessário se o seu condomínio optar pelo modelo de Acesso Controlado para abrir a porta, ou para destravar a geladeira de bebidas alcoólicas.' },
+  { question: 'A loja funciona 24 horas?', answer: 'Sim! Estamos abertos 24 horas por dia, 7 dias por semana, incluindo feriados. A conveniência está sempre lá quando você precisa.' },
+  { question: 'Como compro bebidas alcoólicas?', answer: 'Para segurança de menores, nossas geladeiras de bebidas alcoólicas possuem trava. Para destravar, basta fazer uma rápida verificação de maioridade no nosso totem ou App.' },
+  { question: 'E se eu tiver problema com um produto ou pagamento?', answer: 'Não se preocupe. Temos um canal de Suporte Rápido via WhatsApp. O número está visível na loja e na tela do totem. Nossa equipe atende em tempo real para resolver qualquer questão, inclusive estornos imediatos se necessário.' },
+  { question: 'Aceita dinheiro ou PIX?', answer: 'Para garantir a agilidade e a segurança (sem dinheiro em caixa), aceitamos apenas Cartão de Crédito e Débito. Alguns totens podem aceitar PIX via QR Code na tela. Vale Refeição/Alimentação ainda não são aceitos.' },
+];
+
+const allFaqs = [...syndicFaqs, ...residentFaqs];
+
+const schemas = [
+  serviceSchema(),
+  localBusinessSchema('Brasília', { lat: -15.7975, lng: -47.8919 }),
+  faqPageSchema(allFaqs),
+];
+---
+
+<BaseLayout
+  title="Mercadinho Premium Autônomo em Brasília e Entorno"
+  description="O conceito de Mercadinho de Condomínio, elevado. Tecnologia Scan & Go, Adega e Empório Gourmet 24h. Instalação Gratuita em Brasília e todo o Entorno (DF). Just Go Market — Mercado Autônomo para Condomínios."
+  schemas={schemas}
+>
+  <Header currentPath="/" />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-tagline">MINI MERCADO AUTÔNOMO</span>
+          <h1>Toda conveniência, a um elevador de distância.</h1>
+          <p>Mercado premium <span class="highlight-green" style="font-weight: bold;">24h</span> com zero custo de instalação. Da emergência ao jantar especial, sem sair de casa.</p>
+          <div class="hero-btns">
+            <a href="#contato" class="btn btn-primary">Solicitar Projeto Gratuito</a>
+            <a href="/como-funciona" class="btn btn-outline">Como Funciona →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authority Marquee -->
+    <div class="marquee-section">
+      <div class="container">
+        <p class="marquee-title">A conveniência que seu condomínio merece. As marcas que você ama.</p>
+      </div>
+      <div class="marquee-track">
+        <span class="brand-item">HEINEKEN</span>
+        <span class="brand-item">COCA-COLA</span>
+        <span class="brand-item">LINDT</span>
+        <span class="brand-item">OMO</span>
+        <span class="brand-item">PRINGLES</span>
+        <span class="brand-item">NESTLÉ</span>
+        <span class="brand-item">RED BULL</span>
+        <span class="brand-item">COLGATE</span>
+        <span class="brand-item">BAUDUCCO</span>
+        <span class="brand-item">YPÊ</span>
+        <span class="brand-item">FINI</span>
+        <span class="brand-item">NISSIN</span>
+        <span class="brand-item">HEINEKEN</span>
+        <span class="brand-item">COCA-COLA</span>
+        <span class="brand-item">LINDT</span>
+        <span class="brand-item">OMO</span>
+        <span class="brand-item">PRINGLES</span>
+        <span class="brand-item">NESTLÉ</span>
+        <span class="brand-item">RED BULL</span>
+        <span class="brand-item">COLGATE</span>
+        <span class="brand-item">BAUDUCCO</span>
+        <span class="brand-item">YPÊ</span>
+        <span class="brand-item">FINI</span>
+        <span class="brand-item">NISSIN</span>
+      </div>
+    </div>
+
+    <!-- Modelo de Negócio -->
+    <section id="modelo" class="section-model">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 60px;">
+          <span class="uppercase highlight">Modelo de Negócio — Custo Zero</span>
+          <h2>Mercado Inteligente em Brasília. <span class="highlight-green">Basta o espaço.</span></h2>
+          <p style="max-width: 700px; margin: 20px auto 0;">Transforme seu condomínio com a principal loja de conveniência autônoma do DF. Instalação e operação gratuitas, garantindo comodidade e valorização imediata.</p>
+        </div>
+
+        <div class="bento-grid">
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </div>
+            <h3>Nós Investimos</h3>
+            <p>A Just Go Market financia 100% da estrutura, equipamentos e do estoque inicial.</p>
+          </div>
+
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.39a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Nós Operamos</h3>
+            <p>Gestão completa: reposição constante, manutenção e monitoramento 24 horas por dia.</p>
+          </div>
+
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <h3>Você Valoriza</h3>
+            <p>Inovação premium que atrai moradores e aumenta diretamente o patrimônio do condomínio.</p>
+          </div>
+        </div>
+
+        <div class="transparency-box">
+          <h3>Ponto de energia e 15m². Só isso.</h3>
+          <p>Sem taxas embutidas. Seu condomínio não gasta um centavo para ter o melhor mercadinho autônomo do Distrito Federal. <a href="/quanto-custa" style="color: var(--color-green); text-decoration: underline;">Como fazemos isso? →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Proof -->
+    <SocialProof />
+
+    <!-- Para o Síndico -->
+    <section id="sindico" class="section-split dark-section">
+      <div class="container">
+        <div class="split-grid">
+          <div class="split-content">
+            <span class="uppercase highlight">Para Síndicos e Administradoras</span>
+            <h2>Inovação sem esforço. Valorização Garantida.</h2>
+            <p>Aumente a satisfação dos moradores com uma solução premium, sem adicionar trabalho ou despesas à administração do condomínio.</p>
+
+            <ul class="benefits-list">
+              <li>
+                <div style="min-width: 24px; color: var(--color-green);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <strong>Valorização Imediata</strong>
+                  <span>Diferencial tecnológico que atrai novos perfis e eleva o padrão de moradia.</span>
+                </div>
+              </li>
+              <li>
+                <div style="min-width: 24px; color: var(--color-green);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <strong>Segurança Integrada</strong>
+                  <span>Câmeras HD 24h, acesso via QR Code ou App, além de risco zero de furtos ou passivos trabalhistas.</span>
+                </div>
+              </li>
+              <li>
+                <div style="min-width: 24px; color: var(--color-green);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <strong>Gestão "Turnkey"</strong>
+                  <span>Do projeto à operação diária. Sem vínculo empregatício e zero dor de cabeça para o síndico.</span>
+                </div>
+              </li>
+            </ul>
+
+            <a href="/diagnostico-condominio" class="btn btn-primary btn-glow" style="margin-top: 20px;">DIAGNÓSTICO DO MEU CONDOMÍNIO</a>
+          </div>
+          <div class="split-image-wrapper">
+            <img src="/assets/images/mini-mercado-autonomo-condominio-brasilia.jpg" alt="Mini mercado autônomo Just Go Market instalado em condomínio de alto padrão em Brasília DF" width="800" height="600" loading="lazy" class="split-image" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Para o Morador -->
+    <section id="morador" class="section-split light-section">
+      <div class="container">
+        <div class="split-grid">
+          <div class="split-image-wrapper">
+            <img src="/assets/images/loja-conveniencia-autonoma-df.jpg" alt="Loja de conveniência autônoma Just Go Market em condomínio no Distrito Federal" width="800" height="600" loading="lazy" class="split-image" />
+          </div>
+          <div class="split-content">
+            <span class="uppercase highlight">Para Moradores</span>
+            <h2>O mercado <span class="highlight-italic">premium</span> a um elevador de distância.</h2>
+            <ul class="split-list">
+              <li>
+                <strong>🍸 Adega Gourmet:</strong> Vinhos premiados e itens especiais para celebrar, dentro de casa.
+              </li>
+              <li>
+                <strong>🏠 Despensa 24 Horas:</strong> Esqueceu o ingrediente do jantar? A autonomia da sua conveniência salva em segundos.
+              </li>
+              <li>
+                <strong>📱 Tecnologia Scan & Go:</strong> Autonomia total. Escaneie, pague e desfrute. Sem filas, sem contato.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section-faq">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 40px;">
+          <span class="uppercase highlight">Dúvidas Frequentes</span>
+          <h2>Tudo Sobre o Mercado Autônomo Just Go Market</h2>
+          <p>Perguntas frequentes de síndicos e moradores sobre instalação, custos, segurança e operação.</p>
+        </div>
+
+        <div class="faq-tabs">
+          <button class="faq-tab-btn active" data-faq-tab="syndic">Para Síndicos</button>
+          <button class="faq-tab-btn" data-faq-tab="resident">Para Moradores</button>
+        </div>
+
+        <div id="faq-syndic" class="faq-group active" data-faq-group="syndic">
+          <FAQ items={syndicFaqs} id="faq-syndic-list" />
+        </div>
+
+        <div id="faq-resident" class="faq-group" data-faq-group="resident" style="display: none;">
+          <FAQ items={residentFaqs} id="faq-resident-list" />
+        </div>
+
+        <div class="text-center" style="margin-top: 40px;">
+          <a href="/faq" class="btn btn-primary">Ver Todas as Perguntas →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <ContactForm />
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+  <CTASticky />
+
+  <!-- FAQ Tab Switching -->
+  <script>
+    document.querySelectorAll('[data-faq-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = (btn as HTMLElement).getAttribute('data-faq-tab')!;
+
+        // Update buttons
+        document.querySelectorAll('[data-faq-tab]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update groups
+        document.querySelectorAll('[data-faq-group]').forEach(g => {
+          (g as HTMLElement).style.display = 'none';
+        });
+        const target = document.querySelector(`[data-faq-group="${tab}"]`) as HTMLElement;
+        if (target) {
+          target.style.display = 'block';
+          target.style.animation = 'none';
+          target.offsetHeight;
+          target.style.animation = 'fadeIn 0.5s ease';
+        }
+      });
+    });
+  </script>
+</BaseLayout>
