@@ -412,9 +412,9 @@
 
   window.addEventListener('load', () => {
     const preloader = document.getElementById('site-preloader');
-    const actionText = preloader?.querySelector('.action-text');
-    const statusDot = preloader?.querySelector('.status-dot');
-    const loadingLine = preloader?.querySelector('.loading-line');
+    const actionText = preloader?.querySelector('.action-text') as HTMLElement | null;
+    const statusDot = preloader?.querySelector('.status-dot') as HTMLElement | null;
+    const loadingLine = preloader?.querySelector('.loading-line') as HTMLElement | null;
     
     let phraseIndex = 0;
     const switchPhrase = () => {
