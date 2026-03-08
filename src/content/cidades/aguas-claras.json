@@ -1,0 +1,42 @@
+{
+    "name": "Águas Claras",
+    "slug": "aguas-claras",
+    "h1": "Mercado Autônomo para Condomínios em Águas Claras — Just Go Market",
+    "heroDescription": "Mercado autônomo premium para condomínios em Águas Claras. Instalação gratuita, operação 24h, tecnologia Scan & Go e custo zero para o condomínio.",
+    "metaTitle": "Mercado Autônomo para Condomínios em Águas Claras",
+    "metaDescription": "Mercado autônomo para condomínios em Águas Claras. Instalação gratuita, mais de 500 produtos premium, operação 24h e custo zero. Just Go Market.",
+    "coords": {
+        "lat": -15.8392,
+        "lng": -48.0249
+    },
+    "neighborhoods": [
+        "Águas Claras Sul",
+        "Águas Claras Norte",
+        "Vertical",
+        "Horizontal",
+        "Arniqueiras"
+    ],
+    "content": {
+        "intro": "Águas Claras é uma das regiões que mais cresce no Distrito Federal, com uma densidade vertical impressionante e condomínios modernos que abrigam milhares de famílias. Com torres de 20, 30 e até 40 andares, a verticalização de Águas Claras cria um cenário perfeito para o mercado autônomo: alta concentração de moradores em cada empreendimento e uma demanda crescente por conveniência sem deslocamento.\n\nA Just Go Market entende o DNA de Águas Claras. Sabemos que a maioria dos residentes é composta por jovens profissionais e famílias que valorizam praticidade e tecnologia. Por isso, nossos mercados autônomos em Águas Claras são projetados com um mix de produtos que atende tanto a correria do dia a dia quanto momentos de lazer e celebração.",
+        "whyHere": "Águas Claras apresenta características únicas que tornam o mercado autônomo uma solução essencial:\n\n**Alta verticalização:** Com alguns dos maiores condomínios verticais do DF, Águas Claras concentra centenas de unidades em um único empreendimento — ideal para o modelo de mini mercado inteligente.\n\n**Perfil jovem e digital:** Moradores de Águas Claras têm alto nível de familiaridade com tecnologia, tornando a experiência Scan & Go natural e intuitiva.\n\n**Crescimento acelerado:** Novos empreendimentos estão sendo lançados constantemente, e o mercado autônomo é um diferencial competitivo para construtoras e incorporadoras que querem atrair moradores.\n\n**Distância de opções:** Apesar do crescimento, muitos condomínios ficam a distâncias consideráveis de supermercados e lojas de conveniência, especialmente nas áreas mais afastadas da avenida principal.",
+        "benefits": "Para condomínios em Águas Claras, o mercado autônomo Just Go Market oferece:\n\n**Alto uso por concentração:** A alta densidade de moradores por prédio garante um excelente nível de utilização do mercado. Condomínios com 300+ unidades em Águas Claras são ideais para o modelo.\n\n**Valorização do empreendimento:** Em uma região com forte concorrência entre condomínios, ter um mercado autônomo premium é um diferencial que atrai compradores e locatários.\n\n**Conveniência real:** Para quem mora no 30º andar, descer até o térreo e encontrar um mercado completo a um passo do elevador é uma transformação na rotina.\n\n**Zero custo para o condomínio:** Todo o investimento de instalação e operação é por conta da Just Go Market.",
+        "howItWorks": "A instalação de um mercado autônomo em Águas Claras segue nosso processo padrão:\n\n1. **Visita técnica:** Nossa equipe visita o condomínio para avaliar o espaço disponível no térreo, hall ou área de lazer.\n\n2. **Projeto personalizado:** Desenvolvemos um layout adaptado à arquitetura do condomínio, aproveitando espaços como halls, salões subutilizados ou áreas comuns.\n\n3. **Assembleia:** Preparamos todo o material necessário para a votação em assembleia condominial.\n\n4. **Instalação rápida:** De 15 a 30 dias após a aprovação, seu mercado autônomo está pronto para operar 24h por dia.",
+        "pricing": "Em Águas Claras, o modelo é o mesmo de todas as nossas unidades: custo zero para o condomínio. Sem taxas de instalação, sem mensalidades, sem custos ocultos. A Just Go Market investe e opera. O condomínio cede o espaço e o ponto de energia (consumo reembolsado por nós).",
+        "neighborhoods": "Atendemos condomínios em toda Águas Claras:\n\n- **Águas Claras Sul (Vertical):** Região de maior concentração vertical, com condomínios de 300 a 1.000 unidades — nosso perfil ideal\n- **Águas Claras Norte:** Empreendimentos residenciais de médio a alto padrão com excelente potencial\n- **Região da Avenida das Araucárias:** Condomínios novos com perfil jovem e alto nível de tecnologia\n- **Arniqueiras:** Condomínios horizontais e verticais em crescimento",
+        "cta": "Solicite uma visita técnica gratuita para o seu condomínio em Águas Claras. Avaliamos o espaço, projetamos a solução ideal e apresentamos um estudo de viabilidade completo."
+    },
+    "faqs": [
+        {
+            "question": "Quais condomínios de Águas Claras podem ter o mercado autônomo?",
+            "answer": "Qualquer condomínio com espaço disponível de ~15m² e pelo menos 100 unidades. Em Águas Claras, a maioria dos condomínios verticais se encaixa perfeitamente."
+        },
+        {
+            "question": "O mercado autônomo funciona nos horários de silêncio?",
+            "answer": "Sim! O mercado autônomo é silencioso e não gera nenhum incômodo. Funciona 24h sem barulho, sem funcionários e sem aglomerações."
+        },
+        {
+            "question": "Em quanto tempo é feita a instalação em Águas Claras?",
+            "answer": "Após aprovação em assembleia, a instalação leva de 15 a 30 dias. O processo é rápido e não envolve obras civis."
+        }
+    ]
+}

@@ -1,0 +1,109 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import WhatsAppFloat from '@components/WhatsAppFloat.astro';
+import CTASticky from '@components/CTASticky.astro';
+import { breadcrumbSchema } from '@lib/schema';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', url: 'https://www.justgomarket.com.br/' },
+    { name: 'Sobre', url: 'https://www.justgomarket.com.br/sobre/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Sobre a Just Go Market"
+  description="Conheça a história da Just Go Market. Nascemos em Brasília com a missão de reinventar a conveniência em condomínios com tecnologia autônoma, curadoria gourmet e instalação gratuita."
+  schemas={schemas}
+>
+  <Header currentPath="/sobre" />
+
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-content">
+          <h1>Nascemos da convicção de que o <span class="highlight-italic">tempo</span> é o novo luxo.</h1>
+          <div class="green-line"></div>
+          <p>A Just Go Market foi fundada em Brasília, o coração pulsante do país, com uma missão clara: reinventar a experiência de conveniência para quem não aceita o básico. Somos especialistas em mercado autônomo para condomínios.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section dark-section">
+      <div class="container">
+        <div class="editorial-grid">
+          <div class="editorial-text">
+            <span class="uppercase highlight">O Cenário</span>
+            <h2>A Oportunidade de Criar o Mercado Autônomo do Futuro</h2>
+            <p>Vivemos em uma era onde a tecnologia transformou tudo, exceto a forma como fazemos as compras mais essenciais. Filas, trânsito e lojas impessoais ainda fazem parte da rotina de milhões de moradores em condomínios.</p>
+            <p>Nós olhamos para este cenário em Brasília e vimos a oportunidade de criar algo melhor. Algo que respeite o seu tempo e eleve o padrão do seu dia a dia. Um mercado autônomo de verdade, não apenas uma vending machine glorificada.</p>
+            <p>Brasília, com seus condomínios de alto padrão e distâncias significativas, foi o laboratório perfeito para desenvolver nosso modelo de minimercado inteligente. A cidade que foi planejada para o futuro merecia uma solução de conveniência à sua altura.</p>
+          </div>
+          <div class="editorial-image">
+            <img src="/assets/images/bsb1.png" alt="Arquitetura moderna de Brasília que inspira o conceito de mercado autônomo Just Go Market" width="600" height="400" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section light-section">
+      <div class="container">
+        <div class="editorial-grid reverse">
+          <div class="editorial-image">
+            <img src="/assets/images/bsb2.png" alt="Detalhes da arquitetura de Brasília inspirando o design premium da Just Go Market" width="600" height="400" loading="lazy" />
+          </div>
+          <div class="editorial-text">
+            <span class="uppercase highlight">Nossa Origem</span>
+            <h2>O DNA de Brasília no Mercado Autônomo</h2>
+            <p>Nossa história começa na arquitetura e no ritmo de Brasília. Uma cidade monumental, mas onde as distâncias roubam tempo precioso. Entendemos que, em condomínios de alto padrão, o lar é um refúgio.</p>
+            <p>A conveniência não deveria exigir sair desse santuário. Desenhamos a Just Go Market não como um mercado comum, mas como uma extensão sofisticada da sua casa. Cada detalhe — dos materiais nobres à curadoria gourmet — foi pensado para se integrar harmoniosamente ao ambiente dos condomínios mais exigentes do DF.</p>
+            <p>Nosso modelo de negócio foi construído sobre três pilares: tecnologia invisível, curadoria inteligente de produtos e operação turnkey. Isso significa que o condomínio ganha um diferencial moderno sem qualquer investimento, esforço ou risco — enquanto os moradores ganham acesso 24 horas a mais de 500 produtos selecionados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pillars light-section">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 60px;">
+          <span class="uppercase highlight">Nossos Valores</span>
+          <h2>O Que Nos Move: A Excelência no Mercado Autônomo</h2>
+        </div>
+        <div class="bento-grid">
+          <div class="bento-card">
+            <div class="bento-icon">✦</div>
+            <h3>Design que Respeita o Ambiente</h3>
+            <p>Materiais nobres e estética minimalista para se integrarem harmoniosamente à arquitetura dos condomínios mais exigentes de Brasília e DF.</p>
+          </div>
+          <div class="bento-card">
+            <div class="bento-icon">🍷</div>
+            <h3>Curadoria Inteligente</h3>
+            <p>Uma seleção estratégica que vai do essencial de emergência ao prazer de um vinho premiado ou chocolate gourmet. Mais de 500 itens por unidade.</p>
+          </div>
+          <div class="bento-card">
+            <div class="bento-icon">⚡</div>
+            <h3>Tecnologia Invisível</h3>
+            <p>Sistema fluido, seguro e intuitivo com tecnologia Scan & Go. A experiência de compra leva segundos, não minutos. Pagamento por cartão direto no totem.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta dark-section">
+      <div class="container">
+        <div class="final-content">
+          <p class="lead-text">Mais do que vender produtos, nosso negócio é devolver tempo. Tempo para a família, para relaxar, para viver.</p>
+          <h2 class="signature">Somos a Just Go Market.<br />O luxo do imediato.<br />A conveniência, elevada.</h2>
+          <a href="/#contato" class="btn btn-primary" style="margin-top: 40px;">Leve para seu condomínio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppFloat />
+  <CTASticky />
+</BaseLayout>
