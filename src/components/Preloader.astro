@@ -410,62 +410,80 @@
     "Destrancando portas do seu Mercado Just Go..."
   ];
 
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('site-preloader');
-    const actionText = preloader?.querySelector('.action-text') as HTMLElement | null;
-    const statusDot = preloader?.querySelector('.status-dot') as HTMLElement | null;
-    const loadingLine = preloader?.querySelector('.loading-line') as HTMLElement | null;
-    
-    let phraseIndex = 0;
-    const switchPhrase = () => {
-      if (actionText && phraseIndex < loadingPhrases.length - 1) {
-        phraseIndex++;
-        // Fade out
-        actionText.style.opacity = '0';
-        
-        // Change text and Fade in
-        setTimeout(() => {
-          actionText.textContent = loadingPhrases[phraseIndex];
-          actionText.style.opacity = '1';
-        }, 300);
-      }
-    };
-    
-    // Switch every 800ms
-    const textInterval = setInterval(switchPhrase, 800);
-
+  // Run immediately to prevent flash
+  const preloader = document.getElementById('site-preloader');
+  
+  // Check if it's the first visit in this session
+  if (sessionStorage.getItem('justgo_preloader_shown')) {
     if (preloader) {
-      setTimeout(() => {
-        clearInterval(textInterval);
-        
-        if (actionText) {
-          actionText.textContent = "ACESSO LIBERADO.";
-          actionText.style.color = "var(--preload-green)";
-          actionText.style.fontWeight = "700";
-          actionText.style.letterSpacing = "0.15em";
-        }
-        
-        if (statusDot) {
-          statusDot.style.background = "#fff";
-          statusDot.style.boxShadow = "0 0 15px #fff";
-        }
-
-        if (loadingLine) {
-          // Freeze animation and spread it across the entire bar to signal completion
-          (loadingLine as HTMLElement).style.animation = 'none';
-          (loadingLine as HTMLElement).style.left = '0';
-          (loadingLine as HTMLElement).style.width = '100%';
-        }
-        
-        // Trigger the elegant exit
-        setTimeout(() => {
-          preloader.classList.add('fade-out');
-          document.body.style.overflow = 'auto'; // Re-enable scroll
-        }, 600);
-      }, 4800); // Gives them enough time to read the value propositions
+      preloader.style.display = 'none';
+      preloader.setAttribute('aria-hidden', 'true');
     }
-  });
+  } else {
+    // Lock body scroll while active
+    document.body.style.overflow = 'hidden';
+    
+    window.addEventListener('load', () => {
+      const actionText = preloader?.querySelector('.action-text') as HTMLElement | null;
+      const statusDot = preloader?.querySelector('.status-dot') as HTMLElement | null;
+      const loadingLine = preloader?.querySelector('.loading-line') as HTMLElement | null;
+      
+      let phraseIndex = 0;
+      const switchPhrase = () => {
+        if (actionText && phraseIndex < loadingPhrases.length - 1) {
+          phraseIndex++;
+          // Fade out
+          actionText.style.opacity = '0';
+          
+          // Change text and Fade in
+          setTimeout(() => {
+            actionText.textContent = loadingPhrases[phraseIndex];
+            actionText.style.opacity = '1';
+          }, 300);
+        }
+      };
+      
+      // Switch every 800ms
+      const textInterval = setInterval(switchPhrase, 800);
 
-  // Lock body scroll while active
-  document.body.style.overflow = 'hidden';
+      if (preloader) {
+        setTimeout(() => {
+          clearInterval(textInterval);
+          
+          if (actionText) {
+            actionText.textContent = "ACESSO LIBERADO.";
+            actionText.style.color = "var(--preload-green)";
+            actionText.style.fontWeight = "700";
+            actionText.style.letterSpacing = "0.15em";
+          }
+          
+          if (statusDot) {
+            statusDot.style.background = "#fff";
+            statusDot.style.boxShadow = "0 0 15px #fff";
+          }
+
+          if (loadingLine) {
+            // Freeze animation and spread it across the entire bar to signal completion
+            (loadingLine as HTMLElement).style.animation = 'none';
+            (loadingLine as HTMLElement).style.left = '0';
+            (loadingLine as HTMLElement).style.width = '100%';
+          }
+          
+          // Trigger the elegant exit
+          setTimeout(() => {
+            preloader.classList.add('fade-out');
+            document.body.style.overflow = ''; // Re-enable scroll
+            
+            // Mark as shown for the session
+            sessionStorage.setItem('justgo_preloader_shown', 'true');
+            
+            // Actually remove from DOM after transition
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 1000);
+          }, 600);
+        }, 4800); // Gives them enough time to read the value propositions
+      }
+    });
+  }
 </script>
