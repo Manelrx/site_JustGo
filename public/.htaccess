@@ -8,24 +8,24 @@
     # Redireciona tudo (301) para a versão limpa: https://justgomarket.com.br/...
     RewriteRule ^(.*)$ https://justgomarket.com.br/$1 [L,R=301]
 
-    # 2. Direcionamento Interno Silencioso do Apache (Roteamento estático limpo)
-    # Se a URL não apontar para um diretório real
+    # 2. Remover barras finais (Trailing Slashes)
+    # Se a requisição não for de um diretório válido, retira a barra do final
     RewriteCond %{REQUEST_FILENAME} !-d
-    # E não apontar para um arquivo real (como imagem, css, etc)
-    RewriteCond %{REQUEST_FILENAME} !-f
-    # E existir um arquivo .html com o mesmo nome
-    RewriteCond %{REQUEST_FILENAME}.html -f
-    # Faça o Apache servir o arquivo .html silenciosamente
-    RewriteRule ^(.*)$ $1.html [L]
+    RewriteRule ^(.*)/$ https://justgomarket.com.br/$1 [L,R=301]
 
-    # 3. Evitar acesso direto aos arquivos .html pelo navegador
-    # (Apenas redireciona se a requisição original vinda do navegador conteve o .html)
-    RewriteCond %{ENV:REDIRECT_STATUS} ^$
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^(.+)\.html$ https://justgomarket.com.br/$1 [R=301,L]
-    
-    # 4. Remover o /index.html do final das URLs (Redirecionamento 301)
+    # 3. Remover a extensão .html visível da URL (Redirecionamento 301)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
+    RewriteRule ^([^.]+)\.html$ https://justgomarket.com.br/$1 [L,R=301]
+
+    # 4. Remover /index.html visível da URL (Redirecionamento 301)
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*index\.html\ HTTP/
     RewriteRule ^(([^/]+/)*)index\.html$ https://justgomarket.com.br/$1 [L,R=301]
+
+    # 5. Adicionar a extensão .html internamente (sem mudar a URL no navegador)
+    # Pega qualquer requisição, verifica se o arquivo correspondente .html existe, e serve ele.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^(.*)$ $1.html [L]
     
 </IfModule>
