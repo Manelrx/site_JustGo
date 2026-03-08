@@ -13,6 +13,17 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
+    - name: 📦 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: 🛠️ Instalar Dependências
+      run: npm install
+      
+    - name: 🏗️ Compilar Projeto Astro
+      run: npm run build
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -20,8 +31,8 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         # A pasta onde estão seus arquivos no GitHub. 
-        # Se o index.html estiver na raiz do repositório, deixe "./"
-        local-dir: ./ 
+        # Neste caso, a pasta dist gerada pelo Astro
+        local-dir: ./dist/ 
         
         # A pasta de destino na HostGator.
         # Geralmente é public_html/ para o domínio principal.
