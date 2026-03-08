@@ -8,24 +8,24 @@
     # Redireciona tudo (301) para a versão limpa: https://justgomarket.com.br/...
     RewriteRule ^(.*)$ https://justgomarket.com.br/$1 [L,R=301]
 
-    # 2. Remover o /index.html do final das URLs (Redirecionamento 301)
-    # Ex: justgomarket.com.br/sobre/index.html -> justgomarket.com.br/sobre
+    # 2. Direcionamento Interno Silencioso do Apache (Roteamento estático limpo)
+    # Se a URL não apontar para um diretório real
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # E não apontar para um arquivo real (como imagem, css, etc)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # E existir um arquivo .html com o mesmo nome
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    # Faça o Apache servir o arquivo .html silenciosamente
+    RewriteRule ^(.*)$ $1.html [L]
+
+    # 3. Evitar acesso direto aos arquivos .html pelo navegador
+    # (Apenas redireciona se a requisição original vinda do navegador conteve o .html)
+    RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^(.+)\.html$ https://justgomarket.com.br/$1 [R=301,L]
+    
+    # 4. Remover o /index.html do final das URLs (Redirecionamento 301)
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*index\.html\ HTTP/
     RewriteRule ^(([^/]+/)*)index\.html$ https://justgomarket.com.br/$1 [L,R=301]
-
-    # 3. Remover a extensão .html das URLs (Redirecionamento 301)
-    # Ex: justgomarket.com.br/sobre.html -> justgomarket.com.br/sobre
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
-    RewriteRule ^([^.]+)\.html$ https://justgomarket.com.br/$1 [L,R=301]
-
-    # 4. Direcionamento Interno Silencioso do Apache (Roteamento estático limpo)
-    # Se a URL solicitada não for um diretório existente...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    # ...nem um arquivo existente (como imagem ou css)...
-    RewriteCond %{REQUEST_FILENAME} !-f
-    # ...mas o arquivo .html correspondente existir no servidor...
-    RewriteCond %{REQUEST_FILENAME}.html -f
-    # ...então carregue-o internamente (sem mudar a URL que o usuário vê)
-    RewriteRule ^(.*)$ $1.html [L]
     
 </IfModule>
