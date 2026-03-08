@@ -14,8 +14,8 @@ export interface SEOProps {
 const BRAND = 'Just Go Market';
 const BRAND_SUFFIX = 'Mercado Autônomo para Condomínios';
 const DEFAULT_DESCRIPTION = 'Mercado autônomo premium para condomínios em Brasília e DF. Instalação gratuita, operação 24h, custo zero para o condomínio. Tecnologia Scan & Go.';
-const DEFAULT_OG_IMAGE = 'https://www.justgomarket.com.br/assets/images/mini-mercado-autonomo-condominio-brasilia.jpg';
-const SITE_URL = 'https://www.justgomarket.com.br';
+const DEFAULT_OG_IMAGE = 'https://justgomarket.com.br/assets/images/mini-mercado-autonomo-condominio-brasilia.jpg';
+const SITE_URL = 'https://justgomarket.com.br';
 
 export function generateTitle(title?: string, city?: string): string {
     if (title) {
@@ -30,8 +30,24 @@ export function generateDescription(description?: string): string {
 }
 
 export function generateCanonical(path: string): string {
-    const cleanPath = path.endsWith('/') ? path : `${path}/`;
-    return `${SITE_URL}${cleanPath === '/' ? '/' : cleanPath}`;
+    // Remove query params e hashes
+    const pathWithoutQuery = path.split('?')[0].split('#')[0];
+
+    // Remove index.html e .html
+    let cleanPath = pathWithoutQuery
+        .replace(/\/index\.html$/, '')
+        .replace(/\.html$/, '');
+
+    // Remove trailing slash para páginas secundárias
+    if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+        cleanPath = cleanPath.slice(0, -1);
+    }
+
+    if (cleanPath === '' || cleanPath === '/') {
+        return `${SITE_URL}/`;
+    }
+
+    return `${SITE_URL}${cleanPath}`;
 }
 
 export function generateOGImage(ogImage?: string): string {
