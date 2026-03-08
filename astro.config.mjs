@@ -23,7 +23,7 @@ export default defineConfig({
         '/cases': { status: 301, destination: '/como-funciona-na-pratica' },
     },
     build: {
-        assets: '_assets',
+        assets: 'site-assets',
     },
     vite: {
         css: {
