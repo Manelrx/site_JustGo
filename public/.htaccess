@@ -1,28 +1,31 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    DirectoryIndex index.html
 
     # 1. Forçar HTTPS e remover WWW (Non-WWW)
     RewriteCond %{HTTPS} off [OR]
     RewriteCond %{HTTP_HOST} ^www\.justgomarket\.com\.br$ [NC]
     RewriteRule ^(.*)$ https://justgomarket.com.br/$1 [L,R=301]
 
-    # 2. Adicionar barra final (Trailing Slash) em diretórios
-    # Garante que /sobre vira /sobre/ (comportamento nativo do cPanel)
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_URI} !(.*)/$
-    RewriteRule ^(.*)$ https://justgomarket.com.br/$1/ [L,R=301]
+    # 2. Esconder o index.html principal e das subpastas
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3}\ /index\.html\ HTTP/ [NC]
+    RewriteRule ^index\.html$ https://justgomarket.com.br/ [R=301,L]
 
-    # 3. Esconder o index.html gerado pelo Astro
-    # Se o usuário acessar https://justgomarket.com.br/sobre/index.html, limpe para /sobre/
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*index\.html\ HTTP/
-    RewriteRule ^(([^/]+/)*)index\.html$ https://justgomarket.com.br/$1 [L,R=301]
-    
-    # 4. Esconder final .html (se sobrou algum link quebrado)
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
-    RewriteRule ^([^.]+)\.html$ https://justgomarket.com.br/$1/ [L,R=301]
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3}\ /(.+)/index\.html\ HTTP/ [NC]
+    RewriteRule ^(.+)/index\.html$ https://justgomarket.com.br/$1/ [R=301,L]
+
+    # 3. Remover a barra final de diretórios (Comportamento Astro Oficial)
+    # Se bater num diretório, remove a barra pra manter a URL limpa
+    # OBS: Retirado o forçamento de barra final visto que originou o 403
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^(.*)/$ https://justgomarket.com.br/$1 [L,R=301]
+
+    # 4. Fallback: Se não for um arquivo/diretório real, aponta pro diretório correspondente
+    RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+    RewriteRule ^(.*)$ $1/index.html [L]
 
     # 5. Redirecionamentos de Páginas Antigas (Legado)
-    RewriteRule ^calculadora-roi/?$ https://justgomarket.com.br/diagnostico-condominio/ [R=301,L]
-    RewriteRule ^cases/?$ https://justgomarket.com.br/como-funciona-na-pratica/ [R=301,L]
+    RewriteRule ^calculadora-roi/?$ https://justgomarket.com.br/diagnostico-condominio [R=301,L]
+    RewriteRule ^cases/?$ https://justgomarket.com.br/como-funciona-na-pratica [R=301,L]
 
 </IfModule>
