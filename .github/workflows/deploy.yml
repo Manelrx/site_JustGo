@@ -38,6 +38,9 @@ jobs:
         # Geralmente é public_html/ para o domínio principal.
         server-dir: ./
         
+        # Nome do arquivo de estado (atualizado para forçar um sync *completo* após exclusão manual)
+        state-name: .ftp-deploy-sync-state-v2.json
+        
         # Arquivos que NÃO devem subir (segurança e limpeza)
         exclude: |
           **/.git*
