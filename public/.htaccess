@@ -23,10 +23,17 @@
     RewriteRule ^(%1)\.html$ https://justgomarket.com.br/$1 [R=301,L]
 
     # 5. Mapear internamente as URLs limpas para seus respectivos arquivos .html gerados pelo Astro
+    # Se a URL não for um arquivo nem um diretório, tenta arquivo .html
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{DOCUMENT_ROOT}/$1.html -f
     RewriteRule ^(.*)$ $1.html [L]
+
+    # 5.1 Correção para pastas reais criadas pelo Astro que conflitavam com arquivos .html (ex: /blog e blog.html)
+    # Se bater em um diretório real e existir o arquivo .html correspondente, força o arquivo .html
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_FILENAME}\.html -f
+    RewriteRule ^(.*)/?$ $1.html [L]
 
     # 6. Redirecionamentos de Páginas Antigas (Legado)
     RewriteRule ^calculadora-roi/?$ https://justgomarket.com.br/diagnostico-condominio [R=301,L]
