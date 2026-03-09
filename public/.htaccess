@@ -14,13 +14,21 @@
     RewriteCond %{THE_REQUEST} ^[A-Z]{3}\ /(.+)/index\.html\ HTTP/ [NC]
     RewriteRule ^(.+)/index\.html$ https://justgomarket.com.br/$1/ [R=301,L]
 
-    # O Apache 'mod_dir' já cuida automaticamente de redirecionar '/pasta' para '/pasta/' 
-    # quando a pasta existe no servidor (que é como o Astro com 'build.format: directory' funciona).
-    # Então não precisamos remover a barra final ou forçar arquivos internos de fallback, 
-    # senão criamos um loop infinito (ERR_TOO_MANY_REDIRECTS).
+    # 3. Remover a barra final de URLs que não são diretórios para limpar a URL (ex: /sobre/ para /sobre)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ https://justgomarket.com.br/$1 [L,R=301]
 
+    # 4. Esconder a extensão .html digitada diretamente na URL
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP [NC]
+    RewriteRule ^(%1)\.html$ https://justgomarket.com.br/$1 [R=301,L]
 
-    # 5. Redirecionamentos de Páginas Antigas (Legado)
+    # 5. Mapear internamente as URLs limpas para seus respectivos arquivos .html gerados pelo Astro
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+
+    # 6. Redirecionamentos de Páginas Antigas (Legado)
     RewriteRule ^calculadora-roi/?$ https://justgomarket.com.br/diagnostico-condominio [R=301,L]
     RewriteRule ^cases/?$ https://justgomarket.com.br/como-funciona-na-pratica [R=301,L]
 
