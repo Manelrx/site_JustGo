@@ -20,13 +20,7 @@ export default defineConfig({
     image: {
         domains: ['justgomarket.com.br'],
     },
-    redirects: {
-        '/sobre.html': { status: 301, destination: '/sobre' },
-        '/privacidade.html': { status: 301, destination: '/privacidade' },
-        '/termos.html': { status: 301, destination: '/termos' },
-        '/calculadora-roi': { status: 301, destination: '/diagnostico-condominio' },
-        '/cases': { status: 301, destination: '/como-funciona-na-pratica' },
-    },
+
     vite: {
         css: {
             devSourcemap: true,

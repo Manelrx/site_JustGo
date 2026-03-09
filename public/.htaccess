@@ -21,4 +21,8 @@
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
     RewriteRule ^([^.]+)\.html$ https://justgomarket.com.br/$1/ [L,R=301]
 
+    # 5. Redirecionamentos de Páginas Antigas (Legado)
+    RewriteRule ^calculadora-roi/?$ https://justgomarket.com.br/diagnostico-condominio/ [R=301,L]
+    RewriteRule ^cases/?$ https://justgomarket.com.br/como-funciona-na-pratica/ [R=301,L]
+
 </IfModule>
