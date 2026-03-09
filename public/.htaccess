@@ -14,15 +14,11 @@
     RewriteCond %{THE_REQUEST} ^[A-Z]{3}\ /(.+)/index\.html\ HTTP/ [NC]
     RewriteRule ^(.+)/index\.html$ https://justgomarket.com.br/$1/ [R=301,L]
 
-    # 3. Remover a barra final de diretórios (Comportamento Astro Oficial)
-    # Se bater num diretório, remove a barra pra manter a URL limpa
-    # OBS: Retirado o forçamento de barra final visto que originou o 403
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^(.*)/$ https://justgomarket.com.br/$1 [L,R=301]
+    # O Apache 'mod_dir' já cuida automaticamente de redirecionar '/pasta' para '/pasta/' 
+    # quando a pasta existe no servidor (que é como o Astro com 'build.format: directory' funciona).
+    # Então não precisamos remover a barra final ou forçar arquivos internos de fallback, 
+    # senão criamos um loop infinito (ERR_TOO_MANY_REDIRECTS).
 
-    # 4. Fallback: Se não for um arquivo/diretório real, aponta pro diretório correspondente
-    RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
-    RewriteRule ^(.*)$ $1/index.html [L]
 
     # 5. Redirecionamentos de Páginas Antigas (Legado)
     RewriteRule ^calculadora-roi/?$ https://justgomarket.com.br/diagnostico-condominio [R=301,L]
