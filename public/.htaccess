@@ -1,28 +1,24 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    Options -MultiViews -Indexes
 
     # 1. Forçar HTTPS e remover WWW (Non-WWW)
     RewriteCond %{HTTPS} off [OR]
     RewriteCond %{HTTP_HOST} ^www\.justgomarket\.com\.br$ [NC]
     RewriteRule ^(.*)$ https://justgomarket.com.br/$1 [L,R=301]
 
-    # 2. Remover barras finais (Trailing Slashes) da URL visível
-    # Não remove se for a raiz do site, não remove se for uma pasta real, não remove se for um arquivo real
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # 2. Adicionar barra final (Trailing Slash) em diretórios
+    # Garante que /sobre vira /sobre/ (comportamento nativo do cPanel)
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_URI} ^/(.+)/$
-    RewriteRule ^(.*)/$ https://justgomarket.com.br/$1 [L,R=301]
+    RewriteCond %{REQUEST_URI} !(.*)/$
+    RewriteRule ^(.*)$ https://justgomarket.com.br/$1/ [L,R=301]
 
-    # 3. Remover extensões .html ou /index.html da URL visível (SEO)
-    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP [OR]
+    # 3. Esconder o index.html gerado pelo Astro
+    # Se o usuário acessar https://justgomarket.com.br/sobre/index.html, limpe para /sobre/
     RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*index\.html\ HTTP/
-    RewriteRule ^([^.]+)(\.html|/index\.html)$ https://justgomarket.com.br/$1 [L,R=301]
-
-    # 4. Adicionar a extensão .html internamente (sem mudar a URL no navegador)
-    # IMPORTANTE: A condição de arquivo html deve vir ANTES de checar o diretório
-    # Isso resolve o erro 403 Forbidden do /blog (porque existe o blog.html E a pasta /blog)
-    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-    RewriteRule ^(.*)$ $1.html [L]
+    RewriteRule ^(([^/]+/)*)index\.html$ https://justgomarket.com.br/$1 [L,R=301]
+    
+    # 4. Esconder final .html (se sobrou algum link quebrado)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^.]+)\.html\ HTTP
+    RewriteRule ^([^.]+)\.html$ https://justgomarket.com.br/$1/ [L,R=301]
 
 </IfModule>

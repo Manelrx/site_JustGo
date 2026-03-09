@@ -7,9 +7,9 @@ export default defineConfig({
     srcDir: './src',
     publicDir: './public',
     outDir: './dist',
-    trailingSlash: 'never',
+    trailingSlash: 'always',
     build: {
-        format: 'file',
+        format: 'directory',
         assets: 'site-assets',
     },
     integrations: [

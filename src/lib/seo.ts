@@ -38,9 +38,9 @@ export function generateCanonical(path: string): string {
         .replace(/\/index\.html$/, '')
         .replace(/\.html$/, '');
 
-    // Remove trailing slash para páginas secundárias
-    if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
-        cleanPath = cleanPath.slice(0, -1);
+    // Assegura trailing slash (comportamento nativo de diretórios)
+    if (!cleanPath.endsWith('/')) {
+        cleanPath = `${cleanPath}/`;
     }
 
     if (cleanPath === '' || cleanPath === '/') {
